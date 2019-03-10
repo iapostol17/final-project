@@ -17,14 +17,20 @@ shinyUI(navbarPage(
   title = "Seattle Crisis Call Analysis",
   tabsetPanel(
     
-    # Sandy Yang
+    # Sandy
     # Showing the number of event (y axix)
     # x axix = month 
     # saperate time by color (can show trendline)
     # allow user filter the data by year of report
     # Use of force or not
+    # Type of event
     tabPanel(
-      
+      "Numbers of Calls verse year",
+      titlePanel("Filter your calls"),
+      sidebarLayout(
+        sidebarPanel(),
+        mainPanel ()
+      )
     ), 
     
     tabPanel(
