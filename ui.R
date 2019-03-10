@@ -8,6 +8,9 @@ library(styler)
 library(lintr)
 library(ggplot2)
 
+# data from analysis
+source("analysis.R")
+
 #
 shinyUI(navbarPage( 
   
