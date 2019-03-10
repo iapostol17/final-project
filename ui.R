@@ -19,7 +19,7 @@ shinyUI(navbarPage(
       
     ), 
     tabPanel(
-      
+      "call_type_v_precinct" #Nemo
     ), 
     tabPanel(
       
