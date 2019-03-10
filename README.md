@@ -3,7 +3,11 @@
 
 
 ### Project Description
-We will be working with the [“Seattle Crime Stats by Police Precinct 2008-Present”](https://data.seattle.gov/Public-Safety/Seattle-Crime-Stats-by-Police-Precinct-2008-Presen/3xqu-vnum) data set. The data was collected by the City of Seattle Department of Information Technology and the Seattle Police Department. We accessed the data from data.seattle.gov. Our target audience will be current Seattle and possibly future residents. The audience will want to learn from the data what the crime rates are in Seattle neighborhoods, including if there has been an increase or decrease in crime over time, what the most common types of crime are, and which areas in Seattle have the highest crime rates. Our project will answer the following questions:
+We will be working with the [“Seattle Crime Stats by Police Precinct 2008-Present”](https://data.seattle.gov/Public-Safety/Seattle-Crime-Stats-by-Police-Precinct-2008-Presen/3xqu-vnum) and ["Seattle Crime Stats by 1990 Census Tract 1996-2007"](https://data.seattle.gov/Public-Safety/Seattle-Crime-Stats-by-1990-Census-Tract-1996-2007/e3zj-s4zh) data sets, which were founded at data.seattle.gov. The data was collected by the City of Seattle Department of Information Technology and the Seattle Police Department. 
+
+The original purpose of this data is to help Seattle Police Department tracking violent offenses include rape, murder and non-negligent manslaughter, armed robbery, and aggravated assault, including assault with a deadly weapon.
+
+In our project, we want to visiualize the crime change, which include type and time trend over time by comparing these two data. Our target audience will be current Seattle and possibly future residents. The audience will want to learn from the data what the crime rates are in Seattle neighborhoods, including if there has been an increase or decrease in crime over time, what the most common types of crime are, and which areas in Seattle have the highest crime rates. Our project will answer the following questions:
 1. What area in Seattle has the highest crime rate?
 2. Has there been an increase or decrease in crime over time?
 3. What are the most common types of crime?
