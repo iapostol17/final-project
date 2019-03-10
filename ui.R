@@ -32,9 +32,12 @@ shinyUI(navbarPage(
         mainPanel ()
       )
     ), 
-    
+    # Nemo
+    # Compare/contrast of call type with regards to precinct
+    # Bar graph column by call type, fill by precinct
+    # Can change to focus on specific crimes by precinct
     tabPanel(
-      "call_type_v_precinct" #Nemo
+      "call_type_v_precinct"
     ), 
     tabPanel(
       
