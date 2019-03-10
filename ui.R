@@ -10,5 +10,16 @@ library(ggplot2)
 
 #
 shinyUI(navbarPage( 
-  title = ""
+  title = "Crisis Call Analysis",
+  
+  # Showing the number of event (y axix)
+  # 
+  # x axix = month 
+  # saperate time by color (can show trendline)
+  # allow user filter the data by year of report
+  # Use of force or not
+  # 
+  tabPanel( "Number of Calls comparsion "
+    
+  )
 ))
