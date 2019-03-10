@@ -1,2 +1,14 @@
-# This part of code is written by Sandy Yang
+# Final Project 
+# INFO 201 B
+
 # ui.R
+library(shiny)
+library(plotly)
+library(styler)
+library(lintr)
+library(ggplot2)
+
+#
+shinyUI(navbarPage( 
+  title = ""
+))
