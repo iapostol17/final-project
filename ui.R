@@ -10,5 +10,19 @@ library(ggplot2)
 
 #
 shinyUI(navbarPage( 
-  title = ""
+  title = "", 
+  tabsetPanel(
+    tabPanel(
+      
+    ), 
+    tabPanel(
+      
+    ), 
+    tabPanel(
+      
+    ), 
+    tabPanel(
+      
+    )
+  )
 ))
