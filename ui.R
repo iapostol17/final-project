@@ -28,7 +28,15 @@ shinyUI(navbarPage(
       "Numbers of Calls verse year",
       titlePanel("Filter your calls"),
       sidebarLayout(
-        sidebarPanel(),
+        sidebarPanel(
+          sliderInput(
+            "year_var",
+            label = "year",
+            min = ,
+            max =,
+            value = 
+          )
+        ),
         mainPanel ()
       )
     ), 
