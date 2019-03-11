@@ -5,6 +5,16 @@ crisis <- read.csv("data/Crisis_Data.csv")
 gun_shoot <- read.csv("data/SPD_Officer_Involved_Shooting__OIS__Data.csv")
 
 
+library("lubridate")
+
 # Sandy 
 # get the date of crises
-date <- crisis  %>% select(Occurred.Date...Time)   
+date <- crisis  %>% 
+  select(Reported.Date) %>% 
+  mutate(report.date = as.Date(Reported.Date, format = "%Y-%m-%d")) %>% 
+  mutate(year = floor_date(report.date, unit = "year")) %>% 
+  mutate(month = floor_date(report.date, unit = "month"))  
+  
+  
+
+  

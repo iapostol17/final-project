@@ -11,6 +11,7 @@ library(ggplot2)
 # data from analysis
 source("analysis.R")
 
+yaer_range <- range(date$year)
 #
 shinyUI(navbarPage( 
   
@@ -31,13 +32,15 @@ shinyUI(navbarPage(
         sidebarPanel(
           sliderInput(
             "year_var",
-            label = "year",
-            min = ,
-            max =,
-            value = 
+            label = "select a year",
+            min = min(yaer_range),
+            max = max(yaer_range),
+            value = yaer_range
           )
         ),
-        mainPanel ()
+        mainPanel (
+          plotOutput("num_of_call_vs_date")
+        )
       )
     ), 
     # Nemo
@@ -48,10 +51,10 @@ shinyUI(navbarPage(
       "call_type_v_precinct"
     ), 
     tabPanel(
-      
+      ""
     ), 
     tabPanel(
-      
+      ""
     )
   )
 ))
