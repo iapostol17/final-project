@@ -11,7 +11,7 @@ library(ggplot2)
 # data from analysis
 source("analysis.R")
 
-yaer_range <- range(date$year)
+yaer_range <- range(crisis$year)
 #
 shinyUI(navbarPage( 
   
@@ -30,12 +30,12 @@ shinyUI(navbarPage(
       titlePanel("Filter your calls"),
       sidebarLayout(
         sidebarPanel(
-          sliderInput(
+          dateRangeInput(
             "year_var",
-            label = "select a year",
-            min = min(yaer_range),
-            max = max(yaer_range),
-            value = yaer_range
+            label = "type or select a year",
+            start = min(crisis$year),
+            end = max(crisis$year),
+            format = "yyyy"
           )
         ),
         mainPanel (

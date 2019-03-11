@@ -9,8 +9,7 @@ library("lubridate")
 
 # Sandy 
 # get the date of crises
-date <- crisis  %>% 
-  select(Reported.Date) %>% 
+crisis <- crisis  %>% 
   mutate(report.date = as.Date(Reported.Date, format = "%Y-%m-%d")) %>% 
   mutate(year = floor_date(report.date, unit = "year")) %>% 
   mutate(month = floor_date(report.date, unit = "month"))  
