@@ -10,7 +10,17 @@ library(plotly)
 
 source("analysis.R")
 
-  
+# Sandy
+# filter the necessary data for panel 1
+panel_1_filtered <- reactive({
+  data <- crisis %>%
+    filter(
+      year > round(input$year_var[1]),
+      year < round(input$year_var[2])
+    )
+  data # return data
+})
+
 shinyServer(function(input, output) {
   
 }

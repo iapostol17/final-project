@@ -12,6 +12,8 @@ library(ggplot2)
 source("analysis.R")
 
 yaer_range <- range(crisis$year)
+select_values <- levels(crisis$Precinct)[2:7]
+
 #
 shinyUI(navbarPage( 
   
@@ -30,19 +32,44 @@ shinyUI(navbarPage(
       titlePanel("Filter your calls"),
       sidebarLayout(
         sidebarPanel(
+          
+          # filtera year 
           dateRangeInput(
             "year_var",
             label = "type or select a year",
-            start = min(crisis$year),
-            end = max(crisis$year),
-            format = "yyyy"
+            start = yaer_range[1],
+            end = yaer_range[2],
+            format = "yyyy",
+            startview = "year"
+          ),
+          
+          selectInput(
+            "precinct",
+            label = "Select a percinct",
+            choices = 
+          ),
+          
+          # showing trend line or not
+          checkboxInput(
+            "smooth", 
+            label = strong("Show Trendline"), 
+            value = TRUE
+          ),
+          
+          # filter use of force or not
+          checkboxInput(
+            "use_forece", 
+            label = strong("only include use of force"), 
+            value = F            
           )
+          
         ),
-        mainPanel (
+        mainPanel(
           plotOutput("num_of_call_vs_date")
         )
       )
     ), 
+    
     # Nemo
     # Compare/contrast of call type with regards to precinct
     # Bar graph column by call type, fill by precinct
