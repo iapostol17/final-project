@@ -5,15 +5,22 @@ crisis <- read.csv("data/Crisis_Data.csv")
 gun_shoot <- read.csv("data/SPD_Officer_Involved_Shooting__OIS__Data.csv")
 
 
-library("lubridate")
+library(lubridate)
+library(lintr)
+library(styler)
+library(tidyr)
 
 # Sandy 
 # get the date of crises
-crisis <- crisis  %>% 
+crisis_times <- crisis  %>% 
   mutate(report.date = as.Date(Reported.Date, format = "%Y-%m-%d")) %>% 
   mutate(year = floor_date(report.date, unit = "year")) %>% 
   mutate(month = floor_date(report.date, unit = "month"))  
   
   
-
-  
+# Nemo
+# manipulating data from crisis for call types (general and final), precinct, 
+# and crime committed.
+calls_crimes_and_crisis_precincts <- crisis %>% 
+  select(Precinct, Call.Type, Initial.Call.Type, Final.Call.Type, Disposition) %>% 
+  filter(Disposition != "", !is.na(Disposition))
