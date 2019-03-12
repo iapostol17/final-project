@@ -15,7 +15,7 @@ yaer_range <- range(crisis$year)
 select_values <- levels(crisis$Precinct)[2:7]
 
 #
-shinyUI(navbarPage( 
+ui <- shinyUI(navbarPage( 
   
   title = "Seattle Crisis Call Analysis",
   tabsetPanel(
@@ -46,7 +46,7 @@ shinyUI(navbarPage(
           selectInput(
             "precinct",
             label = "Select a percinct",
-            choices = 
+            choices = list()
           ),
           
           # showing trend line or not
@@ -75,7 +75,7 @@ shinyUI(navbarPage(
     # Bar graph column by call type, fill by precinct
     # Can change to focus on specific crimes by precinct
     tabPanel(
-      "call_type_v_precinct", 
+      "Call Types and Dispositions by Precinct", 
       
       sidebarLayout(
         sidebarPanel(
@@ -86,7 +86,7 @@ shinyUI(navbarPage(
             "precincts", 
             label = "Seattle Police Department Precinct Names", 
             choices = precinct_choices, 
-            selected = "East"
+            selected = precincts
           ), 
           
           # Input for crime distribution selection, with all as the
@@ -94,16 +94,14 @@ shinyUI(navbarPage(
           selectInput(
             "call_result_disposition", 
             label = "Disposition of Action Taken", 
-            choices = disposition_choices, 
-            selected = "All"
+            choices = disposition_choices
           ), 
           
           # Input for call types
           radioButtons(
             "call_type", 
             label = "Type of Crisis Call", 
-            choices = call_choices, 
-            selected = "All"
+            choices = call_choices
           )
         ), 
         mainPanel(
@@ -119,3 +117,5 @@ shinyUI(navbarPage(
     )
   )
 ))
+
+ui
