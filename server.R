@@ -15,10 +15,10 @@ shinyServer(function(input, output) {
   # Sandy
   # filter the necessary data for panel 1
   panel_1_filtered <- reactive({
-    data <- crisis %>%
+    data <- crisis_times %>%
       filter(
-        year > round(input$year_var[1]),
-        year < round(input$year_var[2])
+        year > input$year_var[1],
+        year < input$year_var[2]
       )
     
     # filter out the pricinct if All option was not chosen
@@ -39,9 +39,9 @@ shinyServer(function(input, output) {
     p <- ggplot(
       data = panel_1_filtered(),
       mapping = aes_string(
-        x = year,
-        y = numrow(data),
-        color = "precinct"
+        x = "Reported.Date",
+        y = "Sector",
+        color = "Precinct"
       )
     ) +
       geom_point() +

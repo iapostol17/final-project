@@ -66,7 +66,7 @@ shinyUI(navbarPage(
           
         ),
         mainPanel(
-          plotOutput("num_of_call_vs_date")
+          plotlyOutput("num_of_call_vs_date")
         )
       )
     ), 
