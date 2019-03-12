@@ -24,7 +24,8 @@ precinct_choices_with_all <- list(
   North = precincts[2], 
   East = precincts[3], 
   Southwest = precincts[4], 
-  South = precincts[5]
+  South = precincts[5],
+  Unknown = precincts[6]
 )
   
 # Nemo
