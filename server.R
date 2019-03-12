@@ -21,8 +21,14 @@ shinyServer(function(input, output) {
         year > round(input$year_var[1]),
         year < round(input$year_var[2])
       )
+    
+    if (input$precinct_var != "All") {
+      data <- data %>% 
+        filter( precinct == input$precinct_var) 
+    }
     data # return data
   })
+  
   
   # Nemo
   # data reactivity and plotting for tab 2

@@ -11,11 +11,10 @@ library(ggplot2)
 # data from analysis
 source("analysis.R")
 
-yaer_range <- range(crisis$year)
-select_values <- levels(crisis$Precinct)[2:7]
+year_range <- range(crisis_times$year)
 
 #
-ui <- shinyUI(navbarPage( 
+shinyUI(navbarPage( 
   
   title = "Seattle Crisis Call Analysis",
   tabsetPanel(
@@ -36,21 +35,19 @@ ui <- shinyUI(navbarPage(
           # filtera year 
           dateRangeInput(
             "year_var",
-            label = "type or select a year",
-            start = yaer_range[1],
-            end = yaer_range[2],
+            label = "Please type in or select a year",
+            start = year_range[1],
+            end = year_range[2],
+            min = year_range[1],
+            max = year_range[2],
             format = "yyyy",
             startview = "year"
           ),
           
           selectInput(
-            "precinct",
+            "precinct_var",
             label = "Select a percinct",
-<<<<<<< HEAD
-            choices = precinct_choices
-=======
-            choices = list()
->>>>>>> ec81cdb7565991f8e7dea6ae2c5e776d0292b0e6
+            choices = precinct_choices_with_all
           ),
           
           # showing trend line or not
@@ -79,7 +76,7 @@ ui <- shinyUI(navbarPage(
     # Bar graph column by call type, fill by precinct
     # Can change to focus on specific crimes by precinct
     tabPanel(
-      "Call Types and Dispositions by Precinct", 
+      "call_type_v_precinct", 
       
       sidebarLayout(
         sidebarPanel(
@@ -90,7 +87,7 @@ ui <- shinyUI(navbarPage(
             "precincts", 
             label = "Seattle Police Department Precinct Names", 
             choices = precinct_choices, 
-            selected = precincts
+            selected = "East"
           ), 
           
           # Input for crime distribution selection, with all as the
@@ -98,14 +95,16 @@ ui <- shinyUI(navbarPage(
           selectInput(
             "call_result_disposition", 
             label = "Disposition of Action Taken", 
-            choices = disposition_choices
+            choices = disposition_choices, 
+            selected = "All"
           ), 
           
           # Input for call types
           radioButtons(
             "call_type", 
             label = "Type of Crisis Call", 
-            choices = call_choices
+            choices = call_choices, 
+            selected = "All"
           )
         ), 
         mainPanel(
@@ -121,5 +120,3 @@ ui <- shinyUI(navbarPage(
     )
   )
 ))
-
-ui
