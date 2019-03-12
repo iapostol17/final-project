@@ -23,4 +23,36 @@ crisis_times <- crisis  %>%
 # and crime committed.
 calls_crimes_and_crisis_precincts <- crisis %>% 
   select(Precinct, Call.Type, Initial.Call.Type, Final.Call.Type, Disposition) %>% 
-  filter(Disposition != "", !is.na(Disposition))
+  filter(Disposition != "", Precinct != "")
+
+# choices for checkboxes
+precincts <- unique(calls_crimes_and_crisis_precincts$Precinct)
+precinct_choices <- list(
+  West = precincts[1], 
+  North = precincts[2], 
+  East = precincts[3], 
+  Southwest = precincts[4], 
+  South = precincts[5], 
+  Unknown = precincts[6]
+)
+
+# choices for selection box
+dispositions <- unique(calls_crimes_and_crisis_precincts$Disposition)
+disposition_choices <- list(
+  All = "*", 
+  "Emergent Detention ITA" = dispositions[1], 
+  "Chronic Complaint" = dispositions[2], 
+  "No Action Possible or Necessary" = dispositions[3], 
+  "Resources Declined" = dispositions[4], 
+  "Shelter Transport" = dispositions[5], 
+  "Subject Arrested" = dispositions[6], 
+  "Voluntary Committal" = dispositions[7], 
+  "Crisis Clinic" = dispositions[8], 
+  "Mobile Crisis Team" = dispositions[9], 
+  "Mental Health Agency/Case Manager Notified" = dispositions[10], 
+  "Geriatric Regional Assessment Team" = dispositions[11], 
+  "DMHP Referral" = dispositions[12], 
+  "Drug/Alcohol Treatment Referral" = dispositions[13], 
+  "Unable to Contact" = dispositions[14], 
+  "N/A" = dispositions[15]
+)

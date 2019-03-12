@@ -75,7 +75,33 @@ shinyUI(navbarPage(
     # Bar graph column by call type, fill by precinct
     # Can change to focus on specific crimes by precinct
     tabPanel(
-      "call_type_v_precinct"
+      "call_type_v_precinct", 
+      
+      sidebarLayout(
+        sidebarPanel(
+          "options", 
+          
+          # These buttons will allow users to select 
+          checkboxGroupInput(
+            "precincts", 
+            label = "Seattle Police Department Precinct Names", 
+            choices = precinct_choices, 
+            selected = "East"
+          ), 
+          
+          # Input for crime distribution selection, with all as the
+          # default option
+          selectInput(
+            "call_result_disposition", 
+            label = "Disposition of Action Taken", 
+            choices = disposition_choices, 
+            selected = "All"
+          )
+        ), 
+        mainPanel(
+          
+        )
+      )
     ), 
     tabPanel(
       ""
