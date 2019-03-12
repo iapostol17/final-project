@@ -22,10 +22,10 @@ crisis_times <- crisis  %>%
 # manipulating data from crisis for call types (general and final), precinct, 
 # and crime committed.
 calls_crimes_and_crisis_precincts <- crisis %>% 
-  select(Precinct, Call.Type, Initial.Call.Type, Final.Call.Type, Disposition) %>% 
+  select(Precinct, Call.Type, Disposition) %>% 
   filter(Disposition != "", Precinct != "")
 
-# choices for checkboxes
+# choices for precinct checkboxes
 precincts <- unique(calls_crimes_and_crisis_precincts$Precinct)
 precinct_choices <- list(
   West = precincts[1], 
@@ -36,10 +36,10 @@ precinct_choices <- list(
   Unknown = precincts[6]
 )
 
-# choices for selection box
+# choices for disposition selection box
 dispositions <- unique(calls_crimes_and_crisis_precincts$Disposition)
 disposition_choices <- list(
-  All = "*", 
+  "All" = "*", 
   "Emergent Detention ITA" = dispositions[1], 
   "Chronic Complaint" = dispositions[2], 
   "No Action Possible or Necessary" = dispositions[3], 
@@ -55,4 +55,19 @@ disposition_choices <- list(
   "Drug/Alcohol Treatment Referral" = dispositions[13], 
   "Unable to Contact" = dispositions[14], 
   "N/A" = dispositions[15]
+)
+
+# choices for call-type radio buttons
+call_types <- unique(calls_crimes_and_crisis_precincts$Call.Type)
+call_choices <- list(
+  "All" = "*", 
+  "911" = call_types[1], 
+  "Telephone/Other, Not 911" = call_types[2], 
+  "Onview" = call_types[3], 
+  "Alarm Call (Not Police Alarm)" = call_types[4], 
+  "History Call (Retro)" = call_types[5], 
+  "In Person Complaint" = call_types[6], 
+  "Proactive (Officer-Initiated)" = call_types[7], 
+  "Text Message" = call_types[8], 
+  "N/A" = call_types[9]
 )

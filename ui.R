@@ -96,6 +96,14 @@ shinyUI(navbarPage(
             label = "Disposition of Action Taken", 
             choices = disposition_choices, 
             selected = "All"
+          ), 
+          
+          # Input for call types
+          radioButtons(
+            "call_type", 
+            label = "Type of Crisis Call", 
+            choices = call_choices, 
+            selected = "All"
           )
         ), 
         mainPanel(
