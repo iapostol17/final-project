@@ -63,6 +63,8 @@ shinyServer(function(input, output) {
   
   # Nemo
   # data reactivity and plotting for tab 2
+  # 
+  # First reactively modifying the dataset
   tab_2_filtered <- reactive({
     data <- calls_crimes_and_crisis_precincts %>% 
       filter(Precinct == input$precincts)
@@ -80,6 +82,20 @@ shinyServer(function(input, output) {
     }
     # returns the reactive dataset
     data
+  })
+  
+  # Last, plotting the data in an interactive manner (plotly)
+  # CHANGE TO GRAPH NUMBER OF INSTANCES, with dodge position of Dispositions
+  output$call_disp_precinct_plot <- renderPlotly({
+    p <- ggplot(data = tab_2_filtered(), mapping = aes_string(
+      x = "Call.Type", 
+      y = "Disposition", 
+      fill = "Precinct"
+    )) + 
+      geom_col(position = "dodge") + 
+      theme(axis.text.x = element_text(angle = 90, hjust = 1))
+    
+    ggplotly(p)
   })
 }
 )

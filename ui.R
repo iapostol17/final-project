@@ -3,10 +3,8 @@
 
 # ui.R
 library(shiny)
-library(plotly)
 library(styler)
 library(lintr)
-library(ggplot2)
 
 # data from analysis
 source("analysis.R")
@@ -80,14 +78,14 @@ shinyUI(navbarPage(
       
       sidebarLayout(
         sidebarPanel(
-          "options", 
+          h3("Options"), 
           
           # These buttons will allow users to select 
           checkboxGroupInput(
             "precincts", 
             label = "Seattle Police Department Precinct Names", 
             choices = precinct_choices, 
-            selected = precincts
+            selected = precincts[1]
           ), 
           
           # Input for crime distribution selection, with all as the
@@ -106,7 +104,8 @@ shinyUI(navbarPage(
           )
         ), 
         mainPanel(
-          
+          # plots the output
+          plotlyOutput("call_disp_precinct_plot")
         )
       )
     ), 
