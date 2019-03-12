@@ -46,7 +46,7 @@ shinyUI(navbarPage(
           selectInput(
             "precinct",
             label = "Select a percinct",
-            choices = 
+            choices = precinct_choices
           ),
           
           # showing trend line or not
