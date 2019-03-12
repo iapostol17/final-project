@@ -15,19 +15,12 @@ library(tidyr)
 crisis_times <- crisis  %>% 
   mutate(report.date = as.Date(Reported.Date, format = "%Y-%m-%d")) %>% 
   mutate(year = floor_date(report.date, unit = "year")) %>% 
-  mutate(month = floor_date(report.date, unit = "month"))  
+  mutate(month = floor_date(report.date, unit = "month"))   
 
-precincts <- unique(calls_crimes_and_crisis_precincts$Precinct)
-precinct_choices_with_all <- list(
-  All = "All",
-  West = precincts[1], 
-  North = precincts[2], 
-  East = precincts[3], 
-  Southwest = precincts[4], 
-  South = precincts[5],
-  Unknown = precincts[6]
-)
-  
+crisis_count <- crisis_times %>% 
+  group_by(year) %>% 
+  count()
+
 # Nemo
 # manipulating data from crisis for call types (general and final), precinct, 
 # and crime committed.

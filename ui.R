@@ -47,7 +47,7 @@ shinyUI(navbarPage(
           selectInput(
             "precinct_var",
             label = "Select a percinct",
-            choices = precinct_choices_with_all
+            choices = precinct_choices
           ),
           
           # showing trend line or not
@@ -66,7 +66,7 @@ shinyUI(navbarPage(
           
         ),
         mainPanel(
-          plotlyOutput("num_of_call_vs_date")
+          plotOutput("num_of_call_vs_date")
         )
       )
     ), 

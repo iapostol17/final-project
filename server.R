@@ -21,27 +21,30 @@ shinyServer(function(input, output) {
         year < input$year_var[2]
       )
     
-    # filter out the pricinct if All option was not chosen
-    if (input$precinct_var != "All") {
       data <- data %>% 
-        filter(precinct == input$precinct_var) 
-    }
+        filter(Precinct == input$precinct_var) 
+      
     # filter use of force or not
     if(input$use_forece) {
       data <- data %>% 
         filter(Use.of.Force.Indicator == "Y")
     }
+    
+    data <- data %>% 
+      group_by(year) %>% 
+      count()
+    
     data # return data
   })
   
   # generate plot here 
-  output$num_of_call_vs_date <- renderPlotly({
+  output$num_of_call_vs_date <- renderPlot({
     p <- ggplot(
       data = panel_1_filtered(),
       mapping = aes_string(
-        x = "Reported.Date",
-        y = "Sector",
-        color = "Precinct"
+        x = "year",
+        y = "n",
+        color = "year"
       )
     ) +
       geom_point() +
