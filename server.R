@@ -17,8 +17,8 @@ shinyServer(function(input, output) {
   panel_1_filtered <- reactive({
     data <- crisis_times %>%
       filter(
-        year > input$year_var[1],
-        year < input$year_var[2]
+        year >= input$year_var[1],
+        year <= input$year_var[2]
       )
     
       data <- data %>% 
@@ -30,10 +30,6 @@ shinyServer(function(input, output) {
         filter(Use.of.Force.Indicator == "Y")
     }
     
-    data <- data %>% 
-      group_by(year) %>% 
-      count()
-    
     data # return data
   })
   
@@ -42,9 +38,9 @@ shinyServer(function(input, output) {
     p <- ggplot(
       data = panel_1_filtered(),
       mapping = aes_string(
-        x = "year",
-        y = "n",
-        color = "year"
+        x = "n",
+        y = "hour",
+        color = "Call.Type"
       )
     ) +
       geom_point() +
@@ -54,9 +50,9 @@ shinyServer(function(input, output) {
         title = "Number of Crisis Call vs Year"
       )
     
-    if (input$smooth) {
-      p <- p + geom_smooth(se = FALSE)
-    }
+ #   if (input$smooth) {
+#      p <- p + geom_smooth(se = FALSE)
+ #   }
     p
   })
   

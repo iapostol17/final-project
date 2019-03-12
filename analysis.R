@@ -15,7 +15,8 @@ library(tidyr)
 crisis_times <- crisis  %>% 
   mutate(report.date = as.Date(Reported.Date, format = "%Y-%m-%d")) %>% 
   mutate(year = floor_date(report.date, unit = "year")) %>% 
-  mutate(month = floor_date(report.date, unit = "month"))   
+  mutate(month = floor_date(report.date, unit = "month")) %>% 
+  mutate(hour = as.numeric(substring(Reported.Time, 1, 2)))
 
 crisis_count <- crisis_times %>% 
   group_by(year) %>% 

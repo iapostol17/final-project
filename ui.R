@@ -32,7 +32,7 @@ shinyUI(navbarPage(
       sidebarLayout(
         sidebarPanel(
           
-          # filtera year 
+          # filter a year 
           dateRangeInput(
             "year_var",
             label = "Please type in or select a year",
