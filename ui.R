@@ -88,7 +88,13 @@ shinyUI(navbarPage(
         mainPanel(
           # plots the output
           plotlyOutput("disp_precinct_plot"),
-          plotlyOutput("call_precinct_plot")
+          plotlyOutput("call_precinct_plot"), 
+          cat(paste("ITA = Involuntary Treatment Act; the foundation of the current ITA court,", 
+                "which oversees mental health cases that are not criminal in nature.", 
+                "Geriatric Regional Assessment Team: a group consisting of chemical", 
+                "dependency experts, social workers, nurses, on-call occupational", 
+                "therapists, and geriatric (involving the elderly) psychiatrists.", 
+                "DMHP: Designated mental-health professional", sep = "\n"))
         )
       )
     ),

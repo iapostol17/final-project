@@ -10,7 +10,7 @@ library(plotly)
 library(leaflet)
 
 source("analysis.R")
-source("crime_graph.R")
+source("data/crime_graph.R")
 
 shinyServer(function(input, output) {
   
