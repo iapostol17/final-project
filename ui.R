@@ -20,15 +20,9 @@ shinyUI(navbarPage(
     ),
 
     # Sandy
-    # Showing the number of event (y axix)
-    # x axix = month
-    # saperate time by color (can show trendline)
-    # allow user filter the data by year of report
-    # Use of force or not
-    # Type of event
     tabPanel(
-      "Numbers of Calls verse year",
-      titlePanel("Filter your calls"),
+      "Numbers of Calls verse Sector in Seattle",
+      titlePanel("Seattle Map in relation with crisis call"),
       sidebarLayout(
         sidebarPanel(
           
