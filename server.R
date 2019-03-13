@@ -120,6 +120,29 @@ shinyServer(function(input, output) {
     
     ggplotly(p)
   })
+  
+  ## Imani
+  ## Crime Filter Data Set 
+  datatest <- select(datatest, Offense.Type, Year)
+  datatest$Offense.Type <- gsub('-.*',"",datatest$Offense.Type)
+  datatest$Offense.Type <- gsub(' .*',"",datatest$Offense.Type)
+  
+  ## focuses on the most common offenses 
+  target <- c("WARRARR", "VEH", "THEFT", "ROBBERY", "NARC", "PROPERTY", "HARASSMENT", "FRAUD", "DISTURBANCE", "BURGLARY", "ASSLT")
+  newdata <- datatest%>%
+    filter(Offense.Type %in% target)
+  
+  output$crimetypes <- renderPlot({
+    
+    ## filters the year
+    year.graph <- newdata[newdata$Year == input$select,]
+    
+    ## prints graph of crimes for that year 
+    offeneses_graph <- ggplot(data = year.graph) +
+      geom_bar(width = .2, mapping = aes(x = Offense.Type, fill = Offense.Type)) + ggtitle("Offenses in Seattle") + coord_flip() + scale_y_continuous(name="Freq", labels = scales::comma) 
+    print(offeneses_graph)
+    
+  })
 }
 )
 
