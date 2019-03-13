@@ -29,8 +29,13 @@ shinyServer(function(input, output) {
       data <- data %>% 
         filter(Use.of.Force.Indicator == "Y")
     }
-    
+      
+      data <- data %>% 
+        group_by(year) %>% 
+        count()    
+        
     data # return data
+    
   })
   
   # generate plot here 
@@ -38,9 +43,9 @@ shinyServer(function(input, output) {
     p <- ggplot(
       data = panel_1_filtered(),
       mapping = aes_string(
-        x = "n",
-        y = "hour",
-        color = "Call.Type"
+        x = "year",
+        y = "n",
+        color = "year"
       )
     ) +
       geom_point() +
@@ -50,9 +55,9 @@ shinyServer(function(input, output) {
         title = "Number of Crisis Call vs Year"
       )
     
- #   if (input$smooth) {
-#      p <- p + geom_smooth(se = FALSE)
- #   }
+    if (input$smooth) {
+      p <- p + geom_smooth(se = FALSE)
+    }
     p
   })
   
