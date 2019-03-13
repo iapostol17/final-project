@@ -5,6 +5,7 @@
 library(shiny)
 library(styler)
 library(lintr)
+library(leaflet)
 
 # data from analysis
 source("analysis.R")
@@ -30,41 +31,16 @@ shinyUI(navbarPage(
       titlePanel("Filter your calls"),
       sidebarLayout(
         sidebarPanel(
-
-          # filter a year
-          dateRangeInput(
-            "year_var",
-            label = "Please type in or select a year",
-            start = min(crisis_times$year),
-            end = max(crisis_times$year),
-            min = min(crisis_times$year),
-            max = max(crisis_times$year),
-            format = "yyyy/mm/dd",
-            startview = "month"
-          ),
-
+          
           selectInput(
             "precinct_var",
-            label = "Select a percinct",
+            label = "Precinct",
             choices = precinct_choices
-          ),
-
-          # showing trend line or not
-          checkboxInput(
-            "smooth",
-            label = strong("Show Trendline"),
-            value = TRUE
-          ),
-
-          # filter use of force or not
-          checkboxInput(
-            "use_forece",
-            label = strong("only include use of force"),
-            value = T
           )
+    
         ),
         mainPanel(
-          plotOutput("num_of_call_vs_date")
+          plotOutput("map")
         )
       )
     ),

@@ -25,6 +25,14 @@ crisis_count <- crisis_times %>%
   group_by(year) %>% 
   count()
 
+geo <- list (
+  "Sector" = c("SOUTHWEST", "NORTH", "SOUTH", "WEST", "EAST"),
+  "lag" = c("47.5359", "47.7029", "47.5386", "47.6162", "47.6149"),
+  "lng" = c("122.3619", "122.3348", "122.2934", "122.3366", "122.3172")
+)
+geo <- data.frame(geo)
+
+
 # Nemo
 # manipulating data from crisis for call types (general and final), precinct, 
 # and crime committed.
