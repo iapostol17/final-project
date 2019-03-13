@@ -25,7 +25,7 @@ shinyServer(function(input, output) {
         filter(Precinct == input$precinct_var) 
       
     # filter use of force or not
-    if(input$use_forece) {
+    if (input$use_forece) {
       data <- data %>% 
         filter(Use.of.Force.Indicator == "Y")
     }
@@ -122,5 +122,3 @@ shinyServer(function(input, output) {
   })
 }
 )
-
-
