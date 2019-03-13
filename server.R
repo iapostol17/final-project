@@ -10,7 +10,7 @@ library(plotly)
 library(leaflet)
 
 source("analysis.R")
-source("crime_graph.R")
+source("data/crime_graph.R")
 
 shinyServer(function(input, output) {
   
@@ -21,7 +21,8 @@ shinyServer(function(input, output) {
       filter(Precinct == input$precinct_var)
   })
   
-  # generate plot here 
+  # generate map plot with circle showing 
+  # nuber of call  
   output$map <- renderLeaflet({
     if (input$precinct_var == "WEST") {
       m <- make_map(47.6162, -122.3366)       
@@ -43,6 +44,8 @@ shinyServer(function(input, output) {
     m
   })
   
+  # The function will take doubles latitude and longitude as the 
+  # parameter and return the corresponding map area
   make_map <- function(latitude, longitudes) {
     m <- leaflet( data = panel_1_filtered() ) %>% 
       setView(lng =longitudes, lat = latitude, zoom = 12) %>%       
