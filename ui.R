@@ -9,6 +9,7 @@ library(leaflet)
 
 # data from analysis
 source("analysis.R")
+source("data/crime_graph.R")
 
 #
 shinyUI(navbarPage(
