@@ -88,13 +88,14 @@ shinyServer(function(input, output) {
       fill = "Precinct"
     )) + 
       geom_bar(position = "dodge") + 
-      theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+      theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
       labs(
         x = "Crime Disposition", 
         y = paste("Number of Calls Made, Total =", nrow(tab_2_filtered())), 
-        fill = "Presiding SPD Precinct"
+        fill = "Precincts"
       ) + 
-      coord_flip()
+      coord_flip() + 
+      theme(axis.title.y = element_text(vjust = 1))
     
     ggplotly(p)
   })
@@ -106,11 +107,11 @@ shinyServer(function(input, output) {
       fill = "Precinct"
     )) + 
       geom_bar(position = "fill") + 
-      theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+      theme(axis.text.x = element_text(angle = 45, hjust = 100)) + 
       labs(
         x = "Call Received", 
         y = "Portion of Calls Received by Selected Precints", 
-        fill = "Involved SPD Precincts"
+        fill = "Precincts"
       )
     
     ggplotly(p)
