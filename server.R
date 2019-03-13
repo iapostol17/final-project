@@ -95,7 +95,7 @@ shinyServer(function(input, output) {
       theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
       labs(
         x = "Crime Disposition", 
-        y = paste("Number of Crime Occurances, Total =", nrow(tab_2_filtered())), 
+        y = paste("Number of Calls Made, Total =", nrow(tab_2_filtered())), 
         fill = "Presiding SPD Precinct"
       ) + 
       coord_flip()
