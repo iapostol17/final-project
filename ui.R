@@ -9,8 +9,6 @@ library(lintr)
 # data from analysis
 source("analysis.R")
 
-year_range <- range(crisis_times$year)
-
 #
 shinyUI(navbarPage( 
   
@@ -30,16 +28,16 @@ shinyUI(navbarPage(
       sidebarLayout(
         sidebarPanel(
           
-          # filtera year 
+          # filter a year 
           dateRangeInput(
             "year_var",
             label = "Please type in or select a year",
-            start = year_range[1],
-            end = year_range[2],
-            min = year_range[1],
-            max = year_range[2],
-            format = "yyyy",
-            startview = "year"
+            start = min(crisis_times$year),
+            end = max(crisis_times$year),
+            min = min(crisis_times$year),
+            max = max(crisis_times$year),
+            format = "yyyy/mm/dd",
+            startview = "month"
           ),
           
           selectInput(

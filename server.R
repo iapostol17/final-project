@@ -17,8 +17,8 @@ shinyServer(function(input, output) {
   panel_1_filtered <- reactive({
     data <- crisis_times %>%
       filter(
-        year > input$year_var[1],
-        year < input$year_var[2]
+        year >= input$year_var[1],
+        year <= input$year_var[2]
       )
     
       data <- data %>% 
@@ -29,12 +29,13 @@ shinyServer(function(input, output) {
       data <- data %>% 
         filter(Use.of.Force.Indicator == "Y")
     }
-    
-    data <- data %>% 
-      group_by(year) %>% 
-      count()
-    
+      
+      data <- data %>% 
+        group_by(year) %>% 
+        count()    
+        
     data # return data
+    
   })
   
   # generate plot here 
