@@ -15,22 +15,32 @@ library(tidyr)
 
 # Sandy 
 # get the date of crises
-crisis_times <- crisis  %>% 
-  mutate(report.date = as.Date(Reported.Date, format = "%Y-%m-%d")) %>% 
-  mutate(year = floor_date(report.date, unit = "year")) %>% 
-  mutate(month = as.numeric(substring(Reported.Date, 6, 7))) %>% 
-  mutate(hour = as.numeric(substring(Reported.Time, 1, 2)))
 
-crisis_count <- crisis_times %>% 
-  group_by(year) %>% 
+precinct_crisis <- crisis %>% 
+  group_by(Sector) %>% 
   count()
+precinct_cat <- crisis %>%
+  group_by(Precinct) %>%   
+  select(Sector, Disposition) 
 
-geo <- list (
-  "Sector" = c("SOUTHWEST", "NORTH", "SOUTH", "WEST", "EAST"),
-  "lag" = c("47.5359", "47.7029", "47.5386", "47.6162", "47.6149"),
-  "lng" = c("122.3619", "122.3348", "122.2934", "122.3366", "122.3172")
-)
-geo <- data.frame(geo)
+sector_geo <-  list(
+    "Sector" = precinct_crisis$Sector,
+    "Precinct" = c("UNKNOWN", "NORTH", "EAST", "WEST", "EAST", "SOUTHWEST",
+                   "EAST", "NORTH", "WEST", "NORTH", "WEST", "NORTH", 
+                   "SOUTH", "WEST",
+                   "SOUTH", "SOUTH", "NORTH", "SOUTHWEST"),
+    "lat" = c(47.6062, 47.6608, 47.6343, 47.6307, 47.6130, 47.5446,
+                 47.6054, 47.6822, 47.5954, 47.7114, 47.6131,
+                 47.7241, 47.5632, 47.6374, 47.5712, 	47.5333, 
+                 47.6806,	47.5580),
+      "lng" = c( 122.3321, -122.356, -122.303, -122.329, -122.319, -122.356,
+                 -122.293, -122.382, -122.330, -122.295, -122.335,
+                 -122.339, -122.330, -122.362, -122.297,-122.273, 
+                 -122.309, 	-122.379)
+    )
+sector_geo <- data.frame(sector_geo)
+precinct_crisis <- full_join(precinct_crisis, sector_geo, by = "Sector")
+
 
 
 # Nemo

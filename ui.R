@@ -35,12 +35,18 @@ shinyUI(navbarPage(
           selectInput(
             "precinct_var",
             label = "Precinct",
-            choices = precinct_choices
+            choices = precinct_choices[1:5]
+          ), 
+          
+          selectInput(
+            "dipisition_var",
+            label = "Diposition",
+            choices = disposition_choices
           )
     
         ),
         mainPanel(
-          plotOutput("map")
+          leafletOutput("map")
         )
       )
     ),

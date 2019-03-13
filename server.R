@@ -17,46 +17,47 @@ shinyServer(function(input, output) {
   # Sandy
   # filter the necessary data for panel 1
   panel_1_filtered <- reactive({
-    
+    data <- precinct_crisis %>% 
+      filter(Precinct == input$precinct_var)
   })
   
-  
-  
   # generate plot here 
-  output$map <- renderPlot({
-    m <- leaflet() %>% 
-      setView(lng = -122.35, lat = 47.61, zoom = 11) %>%       
-      addTiles() 
-      
-    if (input$precinct_var == "SOUTHWEST") {
-      m <- leaflet() %>% 
-        setView(lng = -122.3619, lat = 47.5359, zoom = 11) %>%       
-        addTiles() 
+  output$map <- renderLeaflet({
+    if (input$precinct_var == "WEST") {
+      m <- make_map(47.6162, -122.3366)       
+    } 
+    if (input$precinct_var == "EAST") {
+      m <-make_map(47.6149, -122.3172)
     }
-    if(input$precinct_var == "SOUTH"){
-      m <- leaflet() %>% 
-        setView(lng = -122.2934, lat = 47.5386, zoom = 11) %>%       
-        addTiles() 
-    }
-    if(input$precinct_var == "NORTH"){
-      m <- leaflet() %>% 
-        setView(lng = -122.3348, lat = 47.7029, zoom = 11) %>%       
-        addTiles() 
-    }
-    if(input$precinct_var == "WEST"){
-      m <- leaflet() %>% 
-        setView(lng = -122.3366, lat = 47.6162, zoom = 11) %>%       
-        addTiles() 
-    }
-    if(input$precinct_var == "EAST"){
-      m <- leaflet() %>% 
-        setView(lng = -122.3172, lat = 47.6149, zoom = 11) %>%       
-        addTiles() 
-    }
+    if (input$precinct_var == "NORTH") {
+      m <-make_map(47.7029, -122.3348)      
+
+    } 
+    if (input$precinct_var == "SOUTH") {
+      m <-make_map(47.5386, -122.2934)
+    } 
     
+    if (input$precinct_var == "SOUTHWEST") {
+      m <- make_map(47.5359, -122.3619)
+    } 
     m
   })
   
+  make_map <- function(latitude, longitudes) {
+    m <- leaflet( data = panel_1_filtered() ) %>% 
+      setView(lng =longitudes, lat = latitude, zoom = 12) %>%       
+      addTiles() %>% 
+      addCircleMarkers(
+        ~lng, 
+        ~lat,
+        radius = ~n/90,    
+        label = ~as.character( paste0("Sector: ", 
+                                      Sector,
+                                      "\n Number of crisis call: ", 
+                                      n)),
+        stroke = FALSE, fillOpacity = ~n/10000)
+    m
+  }
   # Nemo
   # data reactivity and plotting for tab 2
   # 
