@@ -72,28 +72,50 @@ shinyServer(function(input, output) {
     # if the "All" option is not chosen
     if (input$call_result_disposition != "*") {
       data <- data %>% 
-        filter(Distribution == input$call_result_disposition)
+        filter(Disposition == input$call_result_disposition)
     }
     # call type check, will choose selected option if
     # the "All" option is not chosen
     if (input$call_type != "*") {
       data <- data %>% 
-        filter(Call.Type = input$call_type)
+        filter(Call.Type == input$call_type)
     }
     # returns the reactive dataset
     data
   })
   
   # Last, plotting the data in an interactive manner (plotly)
-  # CHANGE TO GRAPH NUMBER OF INSTANCES, with dodge position of Dispositions
-  output$call_disp_precinct_plot <- renderPlotly({
+  # Plot of crime Dispositions by Precinct
+  output$disp_precinct_plot <- renderPlotly({
     p <- ggplot(data = tab_2_filtered(), mapping = aes_string(
-      x = "Call.Type", 
-      y = "Disposition", 
+      x = "Disposition", 
       fill = "Precinct"
     )) + 
-      geom_col(position = "dodge") + 
-      theme(axis.text.x = element_text(angle = 90, hjust = 1))
+      geom_bar(position = "dodge") + 
+      theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+      labs(
+        x = "Crime Disposition", 
+        y = paste("Number of Crime Occurances, Total =", nrow(tab_2_filtered())), 
+        fill = "Presiding SPD Precinct"
+      ) + 
+      coord_flip()
+    
+    ggplotly(p)
+  })
+  
+  # Plot of crime Call Type by Precinct
+  output$call_precinct_plot <- renderPlotly({
+    p <- ggplot(data = tab_2_filtered(), mapping = aes_string(
+      x = "Call.Type", 
+      fill = "Precinct"
+    )) + 
+      geom_bar(position = "fill") + 
+      theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+      labs(
+        x = "Call Received", 
+        y = "Portion of Calls Received by Selected Precints", 
+        fill = "Involved SPD Precincts"
+      )
     
     ggplotly(p)
   })

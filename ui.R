@@ -105,7 +105,8 @@ shinyUI(navbarPage(
         ), 
         mainPanel(
           # plots the output
-          plotlyOutput("call_disp_precinct_plot")
+          plotlyOutput("disp_precinct_plot"), 
+          plotlyOutput("call_precinct_plot")
         )
       )
     ), 

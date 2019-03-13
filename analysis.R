@@ -26,7 +26,8 @@ crisis_count <- crisis_times %>%
 # and crime committed.
 calls_crimes_and_crisis_precincts <- crisis %>% 
   select(Precinct, Call.Type, Disposition) %>% 
-  filter(Disposition != "", Precinct != "") #NEED TO DO SOME GATHERING
+  filter(Disposition != "", Precinct != "", Call.Type != "") %>% 
+  filter(!is.na(Disposition), !is.na(Precinct), !is.na(Call.Type))
 
 # choices for precinct checkboxes
 precincts <- unique(calls_crimes_and_crisis_precincts$Precinct)
@@ -52,8 +53,8 @@ disposition_choices <- list(
   "Voluntary Committal" = dispositions[7], 
   "Crisis Clinic" = dispositions[8], 
   "Mobile Crisis Team" = dispositions[9], 
-  "Mental Health/Case Notified" = dispositions[10], 
-  "Ger. Reg. Assessment Team" = dispositions[11], 
+  "Health/Case Notified" = dispositions[10], 
+  "Ger. Reg. Assess. Team" = dispositions[11], 
   "DMHP Referral" = dispositions[12], 
   "Drug/Alcohol Referral" = dispositions[13], 
   "Unable to Contact" = dispositions[14], 
