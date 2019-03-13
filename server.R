@@ -60,6 +60,8 @@ shinyServer(function(input, output) {
   
   # Nemo
   # data reactivity and plotting for tab 2
+  # 
+  # First reactively modifying the dataset
   tab_2_filtered <- reactive({
     data <- calls_crimes_and_crisis_precincts %>% 
       filter(Precinct == input$precincts)
@@ -67,16 +69,52 @@ shinyServer(function(input, output) {
     # if the "All" option is not chosen
     if (input$call_result_disposition != "*") {
       data <- data %>% 
-        filter(Distribution == input$call_result_disposition)
+        filter(Disposition == input$call_result_disposition)
     }
     # call type check, will choose selected option if
     # the "All" option is not chosen
     if (input$call_type != "*") {
       data <- data %>% 
-        filter(Call.Type = input$call_type)
+        filter(Call.Type == input$call_type)
     }
     # returns the reactive dataset
     data
+  })
+  
+  # Last, plotting the data in an interactive manner (plotly)
+  # Plot of crime Dispositions by Precinct
+  output$disp_precinct_plot <- renderPlotly({
+    p <- ggplot(data = tab_2_filtered(), mapping = aes_string(
+      x = "Disposition", 
+      fill = "Precinct"
+    )) + 
+      geom_bar(position = "dodge") + 
+      theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+      labs(
+        x = "Crime Disposition", 
+        y = paste("Number of Calls Made, Total =", nrow(tab_2_filtered())), 
+        fill = "Presiding SPD Precinct"
+      ) + 
+      coord_flip()
+    
+    ggplotly(p)
+  })
+  
+  # Plot of crime Call Type by Precinct
+  output$call_precinct_plot <- renderPlotly({
+    p <- ggplot(data = tab_2_filtered(), mapping = aes_string(
+      x = "Call.Type", 
+      fill = "Precinct"
+    )) + 
+      geom_bar(position = "fill") + 
+      theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+      labs(
+        x = "Call Received", 
+        y = "Portion of Calls Received by Selected Precints", 
+        fill = "Involved SPD Precincts"
+      )
+    
+    ggplotly(p)
   })
 }
 )

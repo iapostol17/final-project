@@ -3,10 +3,8 @@
 
 # ui.R
 library(shiny)
-library(plotly)
 library(styler)
 library(lintr)
-library(ggplot2)
 
 # data from analysis
 source("analysis.R")
@@ -74,18 +72,18 @@ shinyUI(navbarPage(
     # Bar graph column by call type, fill by precinct
     # Can change to focus on specific crimes by precinct
     tabPanel(
-      "call_type_v_precinct", 
+      "Crisis Calls and Crime Dispositions by Precinct", 
       
       sidebarLayout(
         sidebarPanel(
-          "options", 
+          h3("Options"), 
           
           # These buttons will allow users to select 
           checkboxGroupInput(
             "precincts", 
             label = "Seattle Police Department Precinct Names", 
             choices = precinct_choices, 
-            selected = "East"
+            selected = precincts[1]
           ), 
           
           # Input for crime distribution selection, with all as the
@@ -93,20 +91,20 @@ shinyUI(navbarPage(
           selectInput(
             "call_result_disposition", 
             label = "Disposition of Action Taken", 
-            choices = disposition_choices, 
-            selected = "All"
+            choices = disposition_choices
           ), 
           
           # Input for call types
           radioButtons(
             "call_type", 
             label = "Type of Crisis Call", 
-            choices = call_choices, 
-            selected = "All"
+            choices = call_choices
           )
         ), 
         mainPanel(
-          
+          # plots the output
+          plotlyOutput("disp_precinct_plot"), 
+          plotlyOutput("call_precinct_plot")
         )
       )
     ), 
