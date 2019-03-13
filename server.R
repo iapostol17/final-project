@@ -17,8 +17,8 @@ shinyServer(function(input, output) {
   panel_1_filtered <- reactive({
     data <- crisis_times %>%
       filter(
-        year >= input$year_var[1],
-        year <= input$year_var[2]
+        Reported.Date >= input$year_var[1],
+        Reported.Date <= input$year_var[2]
       )
     
       data <- data %>% 
@@ -30,10 +30,6 @@ shinyServer(function(input, output) {
         filter(Use.of.Force.Indicator == "Y")
     }
       
-      data <- data %>% 
-        group_by(year) %>% 
-        count()    
-        
     data # return data
     
   })
@@ -43,9 +39,9 @@ shinyServer(function(input, output) {
     p <- ggplot(
       data = panel_1_filtered(),
       mapping = aes_string(
-        x = "year",
-        y = "n",
-        color = "year"
+        x = "hour",
+        y = "Precinct",
+        color = "Call.Type"
       )
     ) +
       geom_point() +
