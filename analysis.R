@@ -7,14 +7,16 @@ gun_shoot <- read.csv("data/SPD_Officer_Involved_Shooting__OIS__Data.csv")
 
 library(lubridate)
 library(lintr)
+library(dplyr)
 library(styler)
 library(tidyr)
 
 # Sandy 
 # get the date of crises
 crisis_times <- crisis  %>% 
-  mutate(year = floor_date(Reported.Date, unit = "year")) %>% 
-  mutate(month = floor_date(Reported.Date, unit = "month")) %>% 
+  mutate(report.date = as.Date(Reported.Date, format = "%Y-%m-%d")) %>% 
+  mutate(year = floor_date(report.date, unit = "year")) %>% 
+  mutate(month = as.numeric(substring(Reported.Date, 6, 7))) %>% 
   mutate(hour = as.numeric(substring(Reported.Time, 1, 2)))
 
 crisis_count <- crisis_times %>% 

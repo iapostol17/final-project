@@ -57,7 +57,7 @@ shinyUI(navbarPage(
           checkboxInput(
             "use_forece", 
             label = strong("only include use of force"), 
-            value = F            
+            value = T           
           )
           
         ),

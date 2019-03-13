@@ -15,10 +15,11 @@ shinyServer(function(input, output) {
   # Sandy
   # filter the necessary data for panel 1
   panel_1_filtered <- reactive({
+    
     data <- crisis_times %>%
       filter(
-        Reported.Date >= input$year_var[1],
-        Reported.Date <= input$year_var[2]
+        as.numeric(Reported.Date) >= as.numeric(input$year_var[1]),
+        as.numeric(Reported.Date) <= as.numeric(input$year_var[2])
       )
     
       data <- data %>% 
@@ -40,23 +41,25 @@ shinyServer(function(input, output) {
       data = panel_1_filtered(),
       mapping = aes_string(
         x = "hour",
-        y = "Precinct",
-        color = "Call.Type"
+        y = "month",
+        color = "Call.Type",
+        axis.line.x = 24,
+        axis.line.y = 12
       )
     ) +
       geom_point() +
       labs(
-        x = "Year",
-        y = "Number of Events",
+        x = "Hour",
+        y = "Month",
         title = "Number of Crisis Call vs Year"
       )
     
     if (input$smooth) {
       p <- p + geom_smooth(se = FALSE)
     }
+    
     p
   })
-  
   
   # Nemo
   # data reactivity and plotting for tab 2
