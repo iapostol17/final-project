@@ -13,6 +13,10 @@ source("analysis.R")
 shinyUI(navbarPage(
   title = "Seattle Crisis Call Analysis",
   tabsetPanel(
+    
+    tabPanel(
+      "Overview"
+    ),
 
     # Sandy
     # Showing the number of event (y axix)
@@ -105,9 +109,6 @@ shinyUI(navbarPage(
           plotlyOutput("call_precinct_plot")
         )
       )
-    ),
-    tabPanel(
-      ""
     ),
     tabPanel(
       "Crime Types",
