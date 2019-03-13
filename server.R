@@ -32,7 +32,7 @@ shinyServer(function(input, output) {
         filter(Use.of.Force.Indicator == "Y")
     }
       
-    data # return data
+    data$disposition_choices # return data
     
   })
   
