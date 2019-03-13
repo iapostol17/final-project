@@ -9,6 +9,7 @@ library(ggplot2)
 library(plotly)
 
 source("analysis.R")
+source("crime_graph.R")
 
 shinyServer(function(input, output) {
   
@@ -138,9 +139,15 @@ shinyServer(function(input, output) {
     
     ## prints graph of crimes for that year 
     offeneses_graph <- ggplot(data = year.graph) +
-      geom_bar(width = .2, mapping = aes(x = Offense.Type, fill = Offense.Type)) + ggtitle("Offenses in Seattle") + coord_flip() + scale_y_continuous(name="Freq", labels = scales::comma) 
-    print(offeneses_graph)
+      geom_bar(width = .2, 
+               mapping = aes(x = Offense.Type, fill = Offense.Type)) + 
+      ggtitle("Offenses in Seattle") + 
+      coord_flip() + 
+      scale_y_continuous(
+        name="Freq", 
+        labels = scales::comma) 
     
+    print(offeneses_graph)
   })
 }
 )

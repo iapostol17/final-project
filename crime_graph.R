@@ -6,9 +6,8 @@ library(ggplot2)
 library(data.table)
 library('stringr')
 
-install.packages("tidyverse")
 crime_data <- read.csv("data/Seattle_Crime_Stats_by_Police_Precinct_2008-Present.csv")
-test <- read.csv("~/Desktop/INFO_201/final-project/data/Seattle_Police_Department_Police_Report_Incident.csv", header = TRUE)
+test <- read.csv("data/Seattle_Police_Department_Police_Report_Incident.csv", header = TRUE)
 
 
 # Filters offenses and removes spacing + "-"
