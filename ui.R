@@ -31,7 +31,7 @@ shinyUI(navbarPage(
     # Sandy
     # show the seattle area with regaed to number of crisis call
     tabPanel(
-      "Numbers of Calls verse Sector in Seattle",
+      "Numbers of Calls verses Sector in Seattle",
       titlePanel("Seattle Map in relation with crisis call"),
       sidebarLayout(
         sidebarPanel(
