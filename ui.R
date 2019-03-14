@@ -158,7 +158,7 @@ shinyUI(navbarPage(
           radioButtons("r_month/day", "Select Time Frame", choices = c("Month", "Day Time"))
         ),
         mainPanel(
-          Output("r_time_crime")
+          
         )
       )
     )
