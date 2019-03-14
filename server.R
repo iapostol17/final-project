@@ -173,10 +173,7 @@ shinyServer(function(input, output) {
 
     print(offeneses_graph)
   })
-<<<<<<< HEAD
-=======
-  
->>>>>>> 06d53e46ccf03e37fcc22897f105fad0067f48c7
+
   ## Rayna Tilley
   
   output$r_time_crime <- renderPlot({
