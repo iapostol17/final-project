@@ -22,11 +22,11 @@ shinyUI(navbarPage(
       "Overview", 
       h2("Authors: Imani Apostol, Nikhil Raman, Rayna Tilley, Sandy Yang"),
       
-      h4(p("In this report we will be analyzing police crisis response data in the Seattle area collected by the 
+      p("In this report we will be analyzing police crisis response data in the Seattle area collected by the 
         Seattle Police Department. The SPD published this information to increase transparency of concering police policies, 
-        processes, and training with regards to police interactions with Seattle residents experiencing behavioral crises.")),
+        processes, and training with regards to police interactions with Seattle residents experiencing behavioral crises."),
       
-      h4(p("We've utilized many data bases regarding 911 calls and other calls along with police responses in order to answer
+      p("We've utilized many data bases regarding 911 calls and other calls along with police responses in order to answer
            the following questions:
          1: How many crises are there per year with respect to presinct and sector. By using an interactive plot that displays
             a map of the Seattle area we are able to see the locations in which there is a greater amount of crises happening 
@@ -36,7 +36,7 @@ shinyUI(navbarPage(
             there a certain presinct that handles more of one type of call than others?
 
          3: How many of a certain crisis occur each year in the Seattle region? Which is the most prevalent? Which year had the 
-            highest amount of crime?"))
+            highest amount of crime?")
          
     ), 
 
