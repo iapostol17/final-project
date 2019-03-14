@@ -34,6 +34,12 @@ shinyUI(navbarPage(
     tabPanel(
       "Numbers of Calls verses Sector in Seattle",
       titlePanel("Seattle Map in relation with crisis call"),
+      p("These map show the distributions of crisis calls in Seattle Police  
+        Department Precincts. Each circle in the map represent the sectors
+        in the area. The size of the circle is related to the number
+        of crisis call. User can pick the year they interested in and 
+        compare it with other years graph. Below we can see the increase number
+        of crisis call in almost sector in 2015-2018."),
       sidebarLayout(
         sidebarPanel(
           selectInput(
