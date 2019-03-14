@@ -9,15 +9,15 @@ library(tidyr)
 
 # Sandy
 
-year_choices <- unique(substring(crisis$Reported.Date,1 , 4))
+year_choices <- unique(substring(crisis$Reported.Date, 1, 4))
 
-get_sector <- crisis %>% 
-  group_by(Sector) %>% 
+get_sector <- crisis %>%
+  group_by(Sector) %>%
   count()
 
 # Beause our dataset do not provide the latitude and longtitude and
-# there is no online dataset which provide the geological data for each 
-# precinct and sector in Seattle, I have to make the new dataset to 
+# there is no online dataset which provide the geological data for each
+# precinct and sector in Seattle, I have to make the new dataset to
 # recorde the geological location
 # The data I use come from google which I google the precinct/sector
 # and record the latitude/longtitude Google provided
@@ -102,38 +102,46 @@ call_choices <- list(
 )
 
 ## Rayna Tilley
-r_time_data <- crisis %>% 
-  select(Occurred.Date...Time, Call.Type, Final.Call.Type, Precinct, Sector) %>% 
-  mutate(Crisis_Type = 
-            mapply(substr, as.character(Final.Call.Type), 
-                   MoreArgs = 
-                     list(3, nchar(as.character(Final.Call.Type))))) %>%
+r_time_data <- crisis %>%
+  select(Occurred.Date...Time, Call.Type, Final.Call.Type, Precinct, Sector) %>%
+  mutate(
+    Crisis_Type =
+      mapply(substr, as.character(Final.Call.Type),
+        MoreArgs =
+          list(3, nchar(as.character(Final.Call.Type)))
+      )
+  ) %>%
   select(-Final.Call.Type) %>%
-  mutate(Year = mapply(substr, as.character(Occurred.Date...Time), 
-                       MoreArgs = list(7, 11)),
-         Month = mapply(substr, as.character(Occurred.Date...Time), 
-                        MoreArgs = list(1, 2)),
-         Time = mapply(substr, as.character(Occurred.Date...Time), 
-                       MoreArgs = list(21, 22))) %>% 
+  mutate(
+    Year = mapply(substr, as.character(Occurred.Date...Time),
+      MoreArgs = list(7, 11)
+    ),
+    Month = mapply(substr, as.character(Occurred.Date...Time),
+      MoreArgs = list(1, 2)
+    ),
+    Time = mapply(substr, as.character(Occurred.Date...Time),
+      MoreArgs = list(21, 22)
+    )
+  ) %>%
   select(-Occurred.Date...Time) %>%
   select(-Crisis_Type)
 r_time_precincts <- as.character(unique(r_time_data$Precinct))
 r_time_precincts <- r_time_precincts[-6]
 r_west <-
   as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
-                                            "WEST", "Sector"])))
+    "WEST", "Sector"])))
 r_north <-
   as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
-                                            "NORTH", "Sector"])))
+    "NORTH", "Sector"])))
 r_east <-
   as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
-                                            "EAST", "Sector"])))
+    "EAST", "Sector"])))
 r_southwest <-
   as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
-                                            "SOUTHWEST", "Sector"])))
+    "SOUTHWEST", "Sector"])))
 r_south <-
   as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
-                                            "SOUTH", "Sector"])))
+    "SOUTH", "Sector"])))
 r_unknown <-
   as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
-                                            "UNKNOWN", "Sector"])))
+    "UNKNOWN", "Sector"])))
