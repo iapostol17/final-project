@@ -22,11 +22,22 @@ shinyUI(navbarPage(
       "Overview", 
       h2("Authors: Imani Apostol, Nikhil Raman, Rayna Tilley, Sandy Yang"),
       
-      p("This is the analysis of Crisis Contacts Data collected by Seattle 
-        Police Department. The reason for SPD department publishing this information is
-         to highlight transparency around our policy, process, 
-        and training with regards to police interactions with members 
-        of Seattle community experiencing behavioral crisis.")
+      h4(p("In this report we will be analyzing police crisis response data in the Seattle area collected by the 
+        Seattle Police Department. The SPD published this information to increase transparency of concering police policies, 
+        processes, and training with regards to police interactions with Seattle residents experiencing behavioral crises.")),
+      
+      h4(p("We've utilized many data bases regarding 911 calls and other calls along with police responses in order to answer
+           the following questions:
+         1: How many crises are there per year with respect to presinct and sector. By using an interactive plot that displays
+            a map of the Seattle area we are able to see the locations in which there is a greater amount of crises happening 
+            and if there is a correlation to location in terms of sector and presinct.
+         
+         2: Which presincts handle more calls that result in certain dispositions and results? What are these dispositions? Is
+            there a certain presinct that handles more of one type of call than others?
+
+         3: How many of a certain crisis occur each year in the Seattle region? Which is the most prevalent? Which year had the 
+            highest amount of crime?"))
+         
     ), 
 
     # Sandy
@@ -144,6 +155,30 @@ shinyUI(navbarPage(
           )
         ),
         mainPanel(plotOutput("crimetypes"))
+      )
+    ),
+    
+    ## Rayna Tilley
+    tabPanel(
+      "Crime Analysis with Respect to Time in Seattle",
+      h1("Crime Types and 911 Call Types with Respect to 
+         Time of Year and Time of Day", align = "center"),
+      h5("information"),
+      sidebarLayout(
+        sidebarPanel(
+          selectInput("r_sector", "Select Precinct/Sector", 
+                      choices = c('West' = list(r_west),
+                                  'North' = list(r_north),
+                                  'East' = list(r_east),
+                                  'Southwest' = list(r_southwest),
+                                  'South' = list(r_south),
+                                  'Unknown' = list(r_unknown))),
+          selectInput("r_year", "Select Year", choices = sort(unique(r_time_data$Year), decreasing = F)),
+          radioButtons("r_month/day", "Select Time Frame", choices = c("Month", "Day Time"))
+        ),
+        mainPanel(
+          dataTableOutput("r_time_crime")
+        )
       )
     )
   )

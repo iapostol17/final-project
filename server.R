@@ -175,7 +175,7 @@ shinyServer(function(input, output) {
   })
 
   ## Rayna Tilley
-  
+  r_time_crime <- renderTable({
   output$r_time_crime <- renderPlot({
     time_crime <- r_time_data %>%
       filter(Year == input$r_year) %>%
@@ -193,5 +193,11 @@ shinyServer(function(input, output) {
     time_crime
   })
   
+  # output$time_graph <- renderPlot({
+  #   p <- ggplot(data = r_time_crime(), mapping = aes_string(
+  #     x = input$r_month/day, 
+  #     fill = "Call.Type"
+  #   )) + 
+  #     geom_bar(position = "fill")
+  # })
 })
-
