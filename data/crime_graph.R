@@ -5,8 +5,8 @@ library(dplyr)
 library(ggplot2)
 library(data.table)
 library('stringr')
+library(tidyverse)
 
-install.packages("tidyverse")
 crime_data <- read.csv("data/Seattle_Crime_Stats_by_Police_Precinct_2008-Present.csv")
 test <- read.csv("data/Seattle_Police_Department_Police_Report_Incident.csv", header = TRUE)
 
