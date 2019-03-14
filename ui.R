@@ -19,8 +19,14 @@ shinyUI(navbarPage(
   tabsetPanel(
     tabPanel(
       "Overview", 
-      h3("Authors: Imani Apostol, Nikhil Raman, Rayna Tilley, Sandy Yang")
-    ),
+      h2("Authors: Imani Apostol, Nikhil Raman, Rayna Tilley, Sandy Yang"),
+      
+      p("This is the analysis of Crisis Contacts Data collected by Seattle 
+        Police Department. The reason for SPD department publishing this information is
+         to highlight transparency around our policy, process, 
+        and training with regards to police interactions with members 
+        of Seattle community experiencing behavioral crisis.")
+    ), 
 
     # Sandy
     # show the seattle area with regaed to number of crisis call

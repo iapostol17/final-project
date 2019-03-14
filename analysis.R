@@ -1,16 +1,10 @@
-<<<<<<< HEAD
 # Read in dataset
 crime_2008 <-
-=======
-# Read in datasets
-crime_2008 <- 
->>>>>>> 4856f86e0bf6699c5160a8a5bfe8ac767c50c891
   read.csv("data/Seattle_Crime_Stats_by_Police_Precinct_2008-Present.csv")
 crime_1990 <- read.csv
 ("data/Seattle_Crime_Stats_by_1990_Census_Tract_1996-2007.csv")
 crisis <- read.csv("data/Crisis_Data.csv")
 gun_shoot <- read.csv("data/SPD_Officer_Involved_Shooting__OIS__Data.csv")
-source("data/crime_graph.R")
 
 
 library(lubridate)
@@ -23,6 +17,10 @@ library(tidyr)
 
 year_choices <- unique(substring(crisis$Reported.Date,1 , 4))
 
+get_sector <- crisis %>% 
+  group_by(Sector) %>% 
+  count()
+
 # Beause our dataset do not provide the latitude and longtitude and
 # there is no online dataset which provide the geological data for each 
 # precinct and sector in Seattle, I have to make the new dataset to 
@@ -30,7 +28,7 @@ year_choices <- unique(substring(crisis$Reported.Date,1 , 4))
 # The data I use come from google which I google the precinct/sector
 # and record the latitude/longtitude Google provided
 sector_geo <- list(
-  "Sector" = precinct_crisis$Sector,
+  "Sector" = get_sector$Sector,
   "Precinct" = c(
     "UNKNOWN", "NORTH", "EAST", "WEST", "EAST", "SOUTHWEST",
     "EAST", "NORTH", "WEST", "NORTH", "WEST", "NORTH",
@@ -51,10 +49,8 @@ sector_geo <- list(
   )
 )
 
-# Turn the list into dataframe and combine withe the dataset that 
-# has number of crisis call in
 sector_geo <- data.frame(sector_geo)
-precinct_crisis <- full_join(precinct_crisis, sector_geo, by = "Sector")
+
 
 # Nemo
 # manipulating data from crisis for call types (general and final), precinct,
@@ -110,14 +106,3 @@ call_choices <- list(
   "Text Message" = call_types[8],
   "N/A" = call_types[9]
 )
-
-## Imani
-## Crime Filter Data Set
-datatest <- select(datatest, Offense.Type, Year)
-datatest$Offense.Type <- gsub("-.*", "", datatest$Offense.Type)
-datatest$Offense.Type <- gsub(" .*", "", datatest$Offense.Type)
-
-## focuses on the most common offenses
-target <- c("WARRARR", "VEH", "THEFT", "ROBBERY", "NARC", "PROPERTY", "HARASSMENT", "FRAUD", "DISTURBANCE", "BURGLARY", "ASSLT")
-newdata <- datatest %>%
-  filter(Offense.Type %in% target)

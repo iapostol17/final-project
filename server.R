@@ -20,14 +20,17 @@ shinyServer(function(input, output) {
   # filter the necessary data for panel 1
   panel_1_filtered <- reactive({
     
-    # get the date of crises
+    # get the date of crises with respect to user's choices
     # count the number of crisis call
     precinct_crisis <- crisis %>%
       filter(substring(Reported.Date, 1, 4) == input$year_var) %>% 
       group_by(Sector) %>%
       count()
     
+    # Turn the list into dataframe and combine withe the dataset that 
+    # has number of crisis call in
     precinct_crisis <- full_join(precinct_crisis, sector_geo, by = "Sector")
+    precinct_crisis[is.na(precinct_crisis)] <- 0
     
     data <- precinct_crisis %>%
       filter(Precinct == input$precinct_var) %>%
@@ -36,8 +39,8 @@ shinyServer(function(input, output) {
         paste0("Sector: ", Sector),
         paste0("Number of crisis call: ", n)
       ))
-
-    data
+      
+      data
   })
 
   # generate map plot with circle showing
