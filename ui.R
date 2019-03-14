@@ -36,7 +36,10 @@ shinyUI(navbarPage(
             there a certain presinct that handles more of one type of call than others?
 
          3: How many of a certain crisis occur each year in the Seattle region? Which is the most prevalent? Which year had the 
-            highest amount of crime?"))
+            highest amount of crime?
+           
+         4: How many emergent calls occur during each month a year? What about evening/afternoon versus morning? Is there a
+            correlation to time of day?"))
          
     ), 
 
