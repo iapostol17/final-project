@@ -166,7 +166,6 @@ shinyUI(navbarPage(
       "Crime Analysis with Respect to Time in Seattle",
       h1("Crime Types and 911 Call Types with Respect to 
          Time of Year and Time of Day", align = "center"),
-      h5("information"),
       sidebarLayout(
         sidebarPanel(
           selectInput("r_sector", "Select Precinct/Sector", 
