@@ -199,5 +199,5 @@ shinyServer(function(input, output) {
   #     fill = "Call.Type"
   #   )) + 
   #     geom_bar(position = "fill")
-  # })
+  })
 })
