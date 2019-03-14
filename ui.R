@@ -16,16 +16,16 @@ source("data/crime_graph.R")
 
 #
 shinyUI(navbarPage(
-    title = "Seattle Crisis Call Analysis",
+  title = "Seattle Crisis Call Analysis",
   tabsetPanel(
     tabPanel(
-      "Overview", 
+      "Overview",
       h2("Authors: Imani Apostol, Nikhil Raman, Rayna Tilley, Sandy Yang"),
-      
+
       h4(p("In this report we will be analyzing police crisis response data in the Seattle area collected by the 
         Seattle Police Department. The SPD published this information to increase transparency of concering police policies, 
         processes, and training with regards to police interactions with Seattle residents experiencing behavioral crises.")),
-      
+
       h4(p("We've utilized many data bases regarding 911 calls and other calls along with police responses in order to answer
            the following questions:
          1: How many crises are there per year with respect to presinct and sector. By using an interactive plot that displays
@@ -37,7 +37,7 @@ shinyUI(navbarPage(
 
          3: How many of a certain crisis occur each year in the Seattle region? Which is the most prevalent? Which year had the 
             highest amount of crime?
-           
+
          4: How many emergent calls occur during each month a year? What about evening/afternoon versus morning? Is there a
             correlation to time of day?"))
          
@@ -60,7 +60,7 @@ shinyUI(navbarPage(
             "precinct_var",
             label = "Precinct",
             choices = precinct_choices[1:5]
-          ), 
+          ),
           selectInput(
             "year_var",
             label = "Year",
@@ -79,16 +79,16 @@ shinyUI(navbarPage(
     # Can change to focus on specific crimes by precinct
     tabPanel(
       "Crisis Calls and Crime Dispositions by Precinct",
-      
+
       p(
         paste(
-          "These graphs show the frequencies, distributions, and natures of crisis calls", 
-          "made to any combination of Seattle Police Department Precincts. Each selection", 
-          "will show not only the number of occurances of any given incident, but the portion", 
-          "of those cases in which a certain call nature is handled by a specific SPD precinct.", 
+          "These graphs show the frequencies, distributions, and natures of crisis calls",
+          "made to any combination of Seattle Police Department Precincts. Each selection",
+          "will show not only the number of occurances of any given incident, but the portion",
+          "of those cases in which a certain call nature is handled by a specific SPD precinct.",
           "There is a small legend below for the most-likely unfamiliar terms displayed."
         )
-      ), 
+      ),
 
       sidebarLayout(
         sidebarPanel(
@@ -150,7 +150,7 @@ shinyUI(navbarPage(
           selectInput("select", "Select Year:",
             choices = list(
               "2008" = "2008", "2009" = "2009", "2010" = "2010", "2011" = "2011",
-              "2012" = "2012", "2013" = "2013", "2014" = "2014", "2015" = "2015", 
+              "2012" = "2012", "2013" = "2013", "2014" = "2014", "2015" = "2015",
               "2016" = "2016", "2017" = "2017",
               "2018" = "2018"
             ),
@@ -160,7 +160,7 @@ shinyUI(navbarPage(
         mainPanel(plotOutput("crimetypes"))
       )
     ),
-    
+
     ## Rayna Tilley
     tabPanel(
       "Crime Analysis with Respect to Time in Seattle",
@@ -168,13 +168,16 @@ shinyUI(navbarPage(
          Time of Year and Time of Day", align = "center"),
       sidebarLayout(
         sidebarPanel(
-          selectInput("r_sector", "Select Precinct/Sector", 
-                      choices = c('West' = list(r_west),
-                                  'North' = list(r_north),
-                                  'East' = list(r_east),
-                                  'Southwest' = list(r_southwest),
-                                  'South' = list(r_south),
-                                  'Unknown' = list(r_unknown))),
+          selectInput("r_sector", "Select Precinct/Sector",
+            choices = c(
+              "West" = list(r_west),
+              "North" = list(r_north),
+              "East" = list(r_east),
+              "Southwest" = list(r_southwest),
+              "South" = list(r_south),
+              "Unknown" = list(r_unknown)
+            )
+          ),
           selectInput("r_year", "Select Year", choices = sort(unique(r_time_data$Year), decreasing = F)),
           radioButtons("r_month/day", "Select Time Frame", choices = c("Month", "Day Time"))
         ),
