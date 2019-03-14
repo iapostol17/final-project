@@ -3,6 +3,8 @@
 
 # ui.R
 library(shiny)
+library(tidyr)
+library(dplyr)
 library(styler)
 library(lintr)
 library(leaflet)
@@ -85,12 +87,14 @@ shinyUI(navbarPage(
           # plots the output
           plotlyOutput("disp_precinct_plot"),
           plotlyOutput("call_precinct_plot"), 
-          cat(paste("ITA = Involuntary Treatment Act; the foundation of the current ITA court,", 
-                "which oversees mental health cases that are not criminal in nature.", 
-                "Geriatric Regional Assessment Team: a group consisting of chemical", 
+          em(h4("Title Legend:")), 
+          p(paste("ITA = Involuntary Treatment Act; the foundation of the current ITA court,", 
+                "which oversees mental health cases that are not criminal in nature.")), 
+          p(paste("Geriatric Regional Assessment Team: a group consisting of chemical", 
                 "dependency experts, social workers, nurses, on-call occupational", 
-                "therapists, and geriatric (involving the elderly) psychiatrists.", 
-                "DMHP: Designated mental-health professional", sep = "\n"))
+                "therapists, and geriatric (involving the elderly) psychiatrists.")), 
+          p("DMHP: Designated mental-health professional"), 
+          p("Onview: officers/callers are at the site of an incident")
         )
       )
     ),

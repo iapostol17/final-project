@@ -3,11 +3,13 @@
 # This part was written by Sandy Yang
 
 # server.R
+library(tidyr)
 library(dplyr)
 library(shiny)
 library(ggplot2)
 library(plotly)
 library(leaflet)
+library(stringr)
 
 source("analysis.R")
 source("data/crime_graph.R")
@@ -92,14 +94,13 @@ shinyServer(function(input, output) {
       fill = "Precinct"
     )) + 
       geom_bar(position = "dodge") + 
-      theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+      theme(axis.text.x = element_text(angle = 45, hjust = -1)) + 
       labs(
         x = "Crime Disposition", 
         y = paste("Number of Calls Made, Total =", nrow(tab_2_filtered())), 
         fill = "Precincts"
       ) + 
-      coord_flip() + 
-      theme(axis.title.y = element_text(vjust = 1))
+      coord_flip()
     
     ggplotly(p)
   })
