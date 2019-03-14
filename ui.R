@@ -8,6 +8,7 @@ library(dplyr)
 library(styler)
 library(lintr)
 library(leaflet)
+library(plotly)
 
 # data from analysis
 source("analysis.R")
@@ -15,7 +16,7 @@ source("data/crime_graph.R")
 
 #
 shinyUI(navbarPage(
-  title = "Seattle Crisis Call Analysis",
+    title = "Seattle Crisis Call Analysis",
   tabsetPanel(
     tabPanel(
       "Overview", 
@@ -33,6 +34,12 @@ shinyUI(navbarPage(
     tabPanel(
       "Numbers of Calls verses Sector in Seattle",
       titlePanel("Seattle Map in relation with crisis call"),
+      p("These map show the distributions of crisis calls in Seattle Police  
+        Department Precincts. Each circle in the map represent the sectors
+        in the area. The size of the circle is related to the number
+        of crisis call. User can pick the year they interested in and 
+        compare it with other years graph. Below we can see the increase number
+        of crisis call in almost sector in 2015-2018."),
       sidebarLayout(
         sidebarPanel(
           selectInput(
@@ -132,7 +139,8 @@ shinyUI(navbarPage(
               "2012" = "2012", "2013" = "2013", "2014" = "2014", "2015" = "2015", 
               "2016" = "2016", "2017" = "2017",
               "2018" = "2018"
-            )
+            ),
+            selected = "2011"
           )
         ),
         mainPanel(plotOutput("crimetypes"))

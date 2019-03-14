@@ -175,8 +175,8 @@ shinyServer(function(input, output) {
   })
   
   ## Rayna Tilley
-  
   r_time_crime <- renderTable({
+  output$r_time_crime <- renderPlot({
     time_crime <- r_time_data %>%
       filter(Year == input$r_year) %>%
       filter(Sector == input$r_sector)
