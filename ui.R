@@ -133,32 +133,11 @@ shinyUI(navbarPage(
               "2012" = "2012", "2013" = "2013", "2014" = "2014", "2015" = "2015", 
               "2016" = "2016", "2017" = "2017",
               "2018" = "2018"
-            )
+            ),
+            selected = "2011"
           )
         ),
         mainPanel(plotOutput("crimetypes"))
-      )
-    ),
-    
-    ## Rayna Tilley
-    tabPanel(
-      "Crime Analysis with Respect to Time in Seattle",
-      h1("Crime Types and 911 Call Types with Respect to 
-         Time of Year and Time of Day", align = "center"),
-      h5("information"),
-      sidebarLayout(
-        sidebarPanel(
-          selectInput("r_sector", "Select Precinct/Sector", 
-                      choices = c('West' = list(r_west),
-                                  'North' = list(r_north),
-                                  'East' = list(r_east),
-                                  'Southwest' = list(r_southwest),
-                                  'South' = list(r_south),
-                                  'Unknown' = list(r_unknown))),
-          selectInput("r_year", "Select Year", choices = sort(unique(r_time_data$Year), decreasing = F)),
-          radioButtons("r_month/day", "Select Time Frame", choices = c("Month", "Day Time"))
-        ),
-        mainPanel(plotOutput("r_time_crime"))
       )
     )
   )
