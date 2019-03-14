@@ -22,11 +22,15 @@ shinyUI(navbarPage(
       "Overview",
       h2("Authors: Imani Apostol, Nikhil Raman, Rayna Tilley, Sandy Yang"),
 
-      h5(p("In this report we will be analyzing police crisis response data in the Seattle area collected by the 
-        Seattle Police Department. The SPD published this information to increase transparency of concering police policies, 
-        processes, and training with regards to police interactions with Seattle residents experiencing behavioral crises.")),
+      h5(p("In this report we will be analyzing police crisis response data in 
+the Seattle area collected by the 
+        Seattle Police Department. The SPD published this information to increase
+transparency of concering police policies, 
+        processes, and training with regards to police interactions with Seattle 
+           residents experiencing behavioral crises.")),
 
-      h5(p("We've utilized many data bases regarding 911 calls and other calls along with police responses in order to answer
+      h5(p("We've utilized many data bases regarding 911 calls and other calls
+along with police responses in order to answer
            the following questions:")),
       h5(p("1: How many crises are there per year with respect to presinct and sector. By using an interactive plot that displays
             a map of the Seattle area we are able to see the locations in which there is a greater amount of crises happening 
@@ -36,7 +40,10 @@ shinyUI(navbarPage(
       h5(p("3: How many of a certain crisis occur each year in the Seattle region? Which is the most prevalent? Which year had the 
             highest amount of crime?")),
       h5(p("4: How many emergent calls occur during each month a year? What about evening/afternoon versus morning? Is there a
-            correlation to time of day?"))
+            correlation to time of day?")),
+      h4(p("Here our data links:")),
+      a(href = "https://l.facebook.com/l.php?u=https%3A%2F%2Fdata.seattle.gov%2FPublic-Safety%2FCrisis-Data%2Fi2q9-thny%3Ffbclid%3DIwAR1_OsjbuBBFHX1mfieFLsS9ZZ5dni8JdSPiCGwCi8pJwDE1eUDZdf9rfqQ&h=AT1whrLU8k3Lmdtb6xmLl11d7rLNuXzkA47jxm5G8putw-ehBd6vqmwx5hmQZ9yZVEBA2P0xqv28FBkC-0NDWZEf3uno3yt_3dN7li0NBeyrR9U3igKUUBbQHw1zMISA0NLe1hbNraFygq_Qmfyr", "Data Base 1 - Police Department"),
+      a(href = "https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.seattle.gov%2Fpolice%2Finformation-and-data%2Fcrisis-contacts%3Ffbclid%3DIwAR1wIdWfjSotCyJvQ47VC4vKz9r_wMqPRd7PublqujrlyAn4bsKkvpQ1flM&h=AT1whrLU8k3Lmdtb6xmLl11d7rLNuXzkA47jxm5G8putw-ehBd6vqmwx5hmQZ9yZVEBA2P0xqv28FBkC-0NDWZEf3uno3yt_3dN7li0NBeyrR9U3igKUUBbQHw1zMISA0NLe1hbNraFygq_Qmfyr", "Data Base 2 - Police Department")
     ),
 
     # Sandy
@@ -156,34 +163,8 @@ shinyUI(navbarPage(
         ),
         mainPanel(plotOutput("crimetypes"))
       )
-    ),
+    )
 
     ## Rayna Tilley
-    tabPanel(
-      "Crime Analysis with Respect to Time in Seattle",
-      h1("Crime Types and 911 Call Types with Respect to 
-         Time of Year and Time of Day", align = "center"),
-      p("Note: this data was collected from a different source."),
-      h5("information"),
-      sidebarLayout(
-        sidebarPanel(
-          selectInput("r_sector", "Select Precinct/Sector",
-            choices = c(
-              "West" = list(r_west),
-              "North" = list(r_north),
-              "East" = list(r_east),
-              "Southwest" = list(r_southwest),
-              "South" = list(r_south),
-              "Unknown" = list(r_unknown)
-            )
-          ),
-          selectInput("r_year", "Select Year", choices = sort(unique(r_time_data$Year), decreasing = F)),
-          radioButtons("r_month/day", "Select Time Frame", choices = c("Month", "Day Time"))
-        ),
-        mainPanel(
-          dataTableOutput("r_time_crime")
-        )
-      )
-    )
   )
 ))
