@@ -8,6 +8,7 @@ library(dplyr)
 library(styler)
 library(lintr)
 library(leaflet)
+library(plotly)
 
 # data from analysis
 source("analysis.R")
@@ -15,7 +16,7 @@ source("data/crime_graph.R")
 
 #
 shinyUI(navbarPage(
-  title = "Seattle Crisis Call Analysis",
+    title = "Seattle Crisis Call Analysis",
   tabsetPanel(
     tabPanel(
       "Overview", 
@@ -44,6 +45,12 @@ shinyUI(navbarPage(
     tabPanel(
       "Numbers of Calls verses Sector in Seattle",
       titlePanel("Seattle Map in relation with crisis call"),
+      p("These map show the distributions of crisis calls in Seattle Police  
+        Department Precincts. Each circle in the map represent the sectors
+        in the area. The size of the circle is related to the number
+        of crisis call. User can pick the year they interested in and 
+        compare it with other years graph. Below we can see the increase number
+        of crisis call in almost sector in 2015-2018."),
       sidebarLayout(
         sidebarPanel(
           selectInput(
@@ -143,34 +150,11 @@ shinyUI(navbarPage(
               "2012" = "2012", "2013" = "2013", "2014" = "2014", "2015" = "2015", 
               "2016" = "2016", "2017" = "2017",
               "2018" = "2018"
-            )
+            ),
+            selected = "2011"
           )
         ),
         mainPanel(plotOutput("crimetypes"))
-      )
-    ),
-    
-    ## Rayna Tilley
-    tabPanel(
-      "Crime Analysis with Respect to Time in Seattle",
-      h1("Crime Types and 911 Call Types with Respect to 
-         Time of Year and Time of Day", align = "center"),
-      h5("information"),
-      sidebarLayout(
-        sidebarPanel(
-          selectInput("r_sector", "Select Precinct/Sector", 
-                      choices = c('West' = list(r_west),
-                                  'North' = list(r_north),
-                                  'East' = list(r_east),
-                                  'Southwest' = list(r_southwest),
-                                  'South' = list(r_south),
-                                  'Unknown' = list(r_unknown))),
-          selectInput("r_year", "Select Year", choices = sort(unique(r_time_data$Year), decreasing = F)),
-          radioButtons("r_month/day", "Select Time Frame", choices = c("Month", "Day Time"))
-        ),
-        mainPanel(
-          
-        )
       )
     )
   )
