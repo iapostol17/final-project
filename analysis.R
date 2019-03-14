@@ -79,3 +79,40 @@ call_choices <- list(
   "Text Message" = call_types[8], 
   "N/A" = call_types[9]
 )
+
+## Rayna Tilley
+r_time_data <- crisis %>% 
+  select(Occurred.Date...Time, Call.Type, Final.Call.Type, Precinct, Sector) %>% 
+  mutate(Crisis_Type = 
+            mapply(substr, as.character(Final.Call.Type), 
+                   MoreArgs = 
+                     list(3, nchar(as.character(Final.Call.Type))))) %>%
+  select(-Final.Call.Type) %>%
+  mutate(Year = mapply(substr, as.character(Occurred.Date...Time), 
+                       MoreArgs = list(7, 11)),
+         Month = mapply(substr, as.character(Occurred.Date...Time), 
+                        MoreArgs = list(1, 2)),
+         Time = mapply(substr, as.character(Occurred.Date...Time), 
+                       MoreArgs = list(21, 22))) %>% 
+  select(-Occurred.Date...Time) %>%
+  select(-Crisis_Type)
+r_time_precincts <- as.character(unique(r_time_data$Precinct))
+r_time_precincts <- r_time_precincts[-6]
+r_west <-
+  as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
+                                            "WEST", "Sector"])))
+r_north <-
+  as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
+                                            "NORTH", "Sector"])))
+r_east <-
+  as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
+                                            "EAST", "Sector"])))
+r_southwest <-
+  as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
+                                            "SOUTHWEST", "Sector"])))
+r_south <-
+  as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
+                                            "SOUTH", "Sector"])))
+r_unknown <-
+  as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
+                                            "UNKNOWN", "Sector"])))

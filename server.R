@@ -150,5 +150,22 @@ shinyServer(function(input, output) {
     
     print(offeneses_graph)
   })
-}
-)
+  
+  ## Rayna Tilley
+  
+  output$r_time_crime <- renderTable({
+    time_crime <- r_time_data %>%
+      filter(Year == input$r_year)
+    time_crime <- time_crime %>%
+      filter(Sector == input$r_sector)
+    if (input$`r_month/day` == "Month") {
+      time_crime <- time_crime %>% 
+        group_by(Month) %>% 
+        count()
+    } else {
+      time_crime <- time_crime %>% 
+        group_by(Time) %>% 
+        count()
+    }
+  })
+})
