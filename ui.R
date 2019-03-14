@@ -145,6 +145,7 @@ shinyUI(navbarPage(
           You can select a year from 2008 and up and it will display a graph
           showing different crimes that have been committed in the selected year.
           This will allow the user to see what the most/least common crime was."),
+      p("Note: this data was collected from a different source."), 
       sidebarLayout(
         sidebarPanel(
           selectInput("select", "Select Year:",
@@ -166,7 +167,6 @@ shinyUI(navbarPage(
       "Crime Analysis with Respect to Time in Seattle",
       h1("Crime Types and 911 Call Types with Respect to 
          Time of Year and Time of Day", align = "center"),
-      p("Note: this data was collected from a different source."), 
       h5("information"),
       sidebarLayout(
         sidebarPanel(
