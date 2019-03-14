@@ -9,6 +9,7 @@ library(styler)
 library(lintr)
 library(leaflet)
 library(plotly)
+library(tidyverse)
 
 # data from analysis
 source("analysis.R")
@@ -168,3 +169,5 @@ along with police responses in order to answer
     ## Rayna Tilley
   )
 ))
+
+ui

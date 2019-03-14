@@ -1,0 +1,12 @@
+name: final-project
+title: final-project
+username:
+account: pachurisu
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 791182
+bundleId: 1940897
+url: https://pachurisu.shinyapps.io/final-project/
+when: 1552603078.52895
+asMultiple: FALSE
+asStatic: FALSE
