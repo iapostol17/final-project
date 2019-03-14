@@ -173,11 +173,9 @@ shinyServer(function(input, output) {
 
     print(offeneses_graph)
   })
-<<<<<<< HEAD
-  
   ## Rayna Tilley
   
-  output$r_time_crime <- renderTable({
+  output$r_time_crime <- renderPlot({
     time_crime <- r_time_data %>%
       filter(Year == input$r_year)
     time_crime <- time_crime %>%
@@ -193,6 +191,4 @@ shinyServer(function(input, output) {
     }
   })
 })
-=======
-})
->>>>>>> 2bd5d1426704c397509e40edf9f4cd314a93bb50
+

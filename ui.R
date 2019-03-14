@@ -8,6 +8,7 @@ library(dplyr)
 library(styler)
 library(lintr)
 library(leaflet)
+library(plotly)
 
 # data from analysis
 source("analysis.R")
@@ -15,7 +16,7 @@ source("data/crime_graph.R")
 
 #
 shinyUI(navbarPage(
-  title = "Seattle Crisis Call Analysis",
+    title = "Seattle Crisis Call Analysis",
   tabsetPanel(
     tabPanel(
       "Overview", 
@@ -157,9 +158,7 @@ shinyUI(navbarPage(
           selectInput("r_year", "Select Year", choices = sort(unique(r_time_data$Year), decreasing = F)),
           radioButtons("r_month/day", "Select Time Frame", choices = c("Month", "Day Time"))
         ),
-        mainPanel(
-          Output("r_time_crime")
-        )
+        mainPanel(plotOutput("r_time_crime"))
       )
     )
   )
