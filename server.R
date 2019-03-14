@@ -19,19 +19,19 @@ shinyServer(function(input, output) {
   # Sandy
   # filter the necessary data for panel 1
   panel_1_filtered <- reactive({
-    
+
     # get the date of crises with respect to user's choices
     # count the number of crisis call
     precinct_crisis <- crisis %>%
-      filter(substring(Reported.Date, 1, 4) == input$year_var) %>% 
+      filter(substring(Reported.Date, 1, 4) == input$year_var) %>%
       group_by(Sector) %>%
       count()
-    
-    # Turn the list into dataframe and combine withe the dataset that 
+
+    # Turn the list into dataframe and combine withe the dataset that
     # has number of crisis call in
     precinct_crisis <- full_join(precinct_crisis, sector_geo, by = "Sector")
     precinct_crisis[is.na(precinct_crisis)] <- 0
-    
+
     data <- precinct_crisis %>%
       filter(Precinct == input$precinct_var) %>%
       mutate(popup_content = paste(
@@ -39,8 +39,8 @@ shinyServer(function(input, output) {
         paste0("Sector: ", Sector),
         paste0("Number of crisis call: ", n)
       ))
-      
-      data
+
+    data
   })
 
   # generate map plot with circle showing
@@ -173,21 +173,21 @@ shinyServer(function(input, output) {
 
     print(offeneses_graph)
   })
-  
+
   ## Rayna Tilley
   r_time_crime <- renderTable({
     output$r_time_crime <- renderPlot({
       time_crime <- r_time_data %>%
         filter(Year == input$r_year) %>%
         filter(Sector == input$r_sector)
-      
-      if (input$r_month/day == "Month") {
-        time_crime <- time_crime %>% 
-          group_by(Month) %>% 
+
+      if (input$r_month / day == "Month") {
+        time_crime <- time_crime %>%
+          group_by(Month) %>%
           count()
       } else {
-        time_crime <- time_crime %>% 
-          group_by(Time) %>% 
+        time_crime <- time_crime %>%
+          group_by(Time) %>%
           count()
       }
       time_crime

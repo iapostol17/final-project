@@ -37,7 +37,7 @@ shinyUI(navbarPage(
             highest amount of crime?")),
       h5(p("4: How many emergent calls occur during each month a year? What about evening/afternoon versus morning? Is there a
             correlation to time of day?"))
-    ), 
+    ),
 
     # Sandy
     # show the seattle area with regaed to number of crisis call
@@ -141,7 +141,7 @@ shinyUI(navbarPage(
           You can select a year from 2008 and up and it will display a graph
           showing different crimes that have been committed in the selected year.
           This will allow the user to see what the most/least common crime was."),
-      p("Note: this data was collected from a different source."), 
+      p("Note: this data was collected from a different source."),
       sidebarLayout(
         sidebarPanel(
           selectInput("select", "Select Year:",
@@ -163,7 +163,7 @@ shinyUI(navbarPage(
       "Crime Analysis with Respect to Time in Seattle",
       h1("Crime Types and 911 Call Types with Respect to 
          Time of Year and Time of Day", align = "center"),
-      p("Note: this data was collected from a different source."), 
+      p("Note: this data was collected from a different source."),
       h5("information"),
       sidebarLayout(
         sidebarPanel(
