@@ -20,7 +20,14 @@ shinyServer(function(input, output) {
   # filter the necessary data for panel 1
   panel_1_filtered <- reactive({
     data <- precinct_crisis %>% 
-      filter(Precinct == input$precinct_var)
+      filter(Precinct == input$precinct_var) %>% 
+      mutate(popup_content =  paste(sep = "<br/>",
+                                     paste0("Sector: ", Sector),
+                                     paste0("Number of crisis call: ", n)
+                                     )
+             )
+    
+    data
   })
   
   # generate map plot with circle showing 
@@ -49,17 +56,17 @@ shinyServer(function(input, output) {
   # The function will take doubles latitude and longitude as the 
   # parameter and return the corresponding map area
   make_map <- function(latitude, longitudes) {
+
     m <- leaflet( data = panel_1_filtered() ) %>% 
-      setView(lng =longitudes, lat = latitude, zoom = 12) %>%       
-      addTiles() %>% 
+      setView(lng =longitudes, lat = latitude, zoom = 12.5) %>%       
+      addProviderTiles(providers$CartoDB.Positron) %>% 
+      addPopups(~lng, ~lat, ~popup_content,
+                options = popupOptions(closeButton = T)
+      ) %>% 
       addCircleMarkers(
         ~lng, 
         ~lat,
-        radius = ~n/90,    
-        label = ~as.character( paste0("Sector: ", 
-                                      Sector,
-                                      "\n Number of crisis call: ", 
-                                      n)),
+        radius = ~n/70,    
         stroke = FALSE, fillOpacity = ~n/10000)
     m
   }
