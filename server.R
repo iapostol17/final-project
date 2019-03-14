@@ -76,7 +76,7 @@ shinyServer(function(input, output) {
         ~lat,
         radius = ~ n / 70,
         color = "red",
-        stroke = FALSE, fillOpacity = .5
+        stroke = FALSE, fillOpacity = .4
       )
     m
   }

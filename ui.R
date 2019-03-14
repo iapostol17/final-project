@@ -18,7 +18,8 @@ shinyUI(navbarPage(
   title = "Seattle Crisis Call Analysis",
   tabsetPanel(
     tabPanel(
-      "Overview"
+      "Overview", 
+      h3("Authors: Imani Apostol, Nikhil Raman, Rayna Tilley, Sandy Yang")
     ),
 
     # Sandy
@@ -51,6 +52,16 @@ shinyUI(navbarPage(
     # Can change to focus on specific crimes by precinct
     tabPanel(
       "Crisis Calls and Crime Dispositions by Precinct",
+      
+      p(
+        paste(
+          "These graphs show the frequencies, distributions, and natures of crisis calls", 
+          "made to any combination of Seattle Police Department Precincts. Each selection", 
+          "will show not only the number of occurances of any given incident, but the portion", 
+          "of those cases in which a certain call nature is handled by a specific SPD precinct.", 
+          "There is a small legend below for the most-likely unfamiliar terms displayed."
+        )
+      ), 
 
       sidebarLayout(
         sidebarPanel(
