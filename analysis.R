@@ -9,7 +9,12 @@ library(tidyr)
 
 # Sandy
 
-year_choices <- unique(substring(crisis$Reported.Date, 1, 4))
+year <- unique(substring(crisis$Reported.Date, 1, 4))
+year_choices <- list(year[1],
+                     year[3],
+                     year[4],
+                     year[5],
+                     year[6])
 
 get_sector <- crisis %>%
   group_by(Sector) %>%
@@ -107,20 +112,20 @@ r_time_data <- crisis %>%
   mutate(
     Crisis_Type =
       mapply(substr, as.character(Final.Call.Type),
-        MoreArgs =
-          list(3, nchar(as.character(Final.Call.Type)))
+             MoreArgs =
+               list(3, nchar(as.character(Final.Call.Type)))
       )
   ) %>%
   select(-Final.Call.Type) %>%
   mutate(
     Year = mapply(substr, as.character(Occurred.Date...Time),
-      MoreArgs = list(7, 11)
+                  MoreArgs = list(7, 11)
     ),
     Month = mapply(substr, as.character(Occurred.Date...Time),
-      MoreArgs = list(1, 2)
+                   MoreArgs = list(1, 2)
     ),
     Time = mapply(substr, as.character(Occurred.Date...Time),
-      MoreArgs = list(21, 22)
+                  MoreArgs = list(21, 22)
     )
   ) %>%
   select(-Occurred.Date...Time) %>%
@@ -129,19 +134,19 @@ r_time_precincts <- as.character(unique(r_time_data$Precinct))
 r_time_precincts <- r_time_precincts[-6]
 r_west <-
   as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
-    "WEST", "Sector"])))
+                                            "WEST", "Sector"])))
 r_north <-
   as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
-    "NORTH", "Sector"])))
+                                            "NORTH", "Sector"])))
 r_east <-
   as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
-    "EAST", "Sector"])))
+                                            "EAST", "Sector"])))
 r_southwest <-
   as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
-    "SOUTHWEST", "Sector"])))
+                                            "SOUTHWEST", "Sector"])))
 r_south <-
   as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
-    "SOUTH", "Sector"])))
+                                            "SOUTH", "Sector"])))
 r_unknown <-
   as.list(as.character(unique(r_time_data[r_time_data$Precinct ==
-    "UNKNOWN", "Sector"])))
+                                            "UNKNOWN", "Sector"])))
