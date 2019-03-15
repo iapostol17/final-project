@@ -7,8 +7,10 @@ library(dplyr)
 library(styler)
 library(tidyr)
 
-# Sandy
-
+# This part is written by Sandy
+# Get years from 2015 - 2019
+# (Has elimate the choice of 1990 because it didn't show any
+# location in the record)
 year <- unique(substring(crisis$Reported.Date, 1, 4))
 year_choices <- list(year[1],
                      year[3],
@@ -16,6 +18,7 @@ year_choices <- list(year[1],
                      year[5],
                      year[6])
 
+# get all the Sector in crisis data 
 get_sector <- crisis %>%
   group_by(Sector) %>%
   count()
@@ -48,6 +51,7 @@ sector_geo <- list(
   )
 )
 
+# make geological location of Sector into dataset
 sector_geo <- data.frame(sector_geo)
 
 

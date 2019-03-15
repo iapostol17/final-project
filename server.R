@@ -32,6 +32,8 @@ shinyServer(function(input, output) {
     precinct_crisis <- full_join(precinct_crisis, sector_geo, by = "Sector")
     precinct_crisis[is.na(precinct_crisis)] <- 0
 
+    # Get the relative data based on user's choice of precinct
+    # Also add the new column which will later show in the marker on map
     data <- precinct_crisis %>%
       filter(Precinct == input$precinct_var) %>%
       mutate(popup_content = paste(
@@ -40,7 +42,7 @@ shinyServer(function(input, output) {
         paste0("Number of crisis call: ", n)
       ))
 
-    data
+    data #return data
   })
 
   # generate map plot with circle showing
