@@ -21,6 +21,7 @@ shinyUI(navbarPage(
   tabsetPanel(
     tabPanel(
       "Overview",
+      h1("Seattle Crime Analysis - What Kinds of Crime Happen in Your Area?", align = "center"),
       h2("Authors: Imani Apostol, Nikhil Raman, Rayna Tilley, Sandy Yang"),
 
       h5(p("In this report we will be analyzing police crisis response data in
@@ -42,17 +43,17 @@ shinyUI(navbarPage(
            highest amount of crime?")),
       h5(p("4: How many emergent calls occur during each month a year? What about evening/afternoon versus morning? Is there a
            correlation to time of day?")),
-      h4(p("Here our data links, the first of which is crisis data and the second which is crisis contacts data both
+      h4(p("Here are our data links, the first of which is crisis data and the second which is crisis contacts data both
            obtained from the Seattle.gov data source:")),
-      a(href = "https://data.seattle.gov/Public-Safety/Crisis-Data/i2q9-thny", "Crisis Data"),
-      a(href = "https://data.seattle.gov/Public-Safety/Crisis-Data/i2q9-thny", "Crisis Contacts Data")
+      p(a(href = "https://data.seattle.gov/Public-Safety/Crisis-Data/i2q9-thny", "Crisis Data")),
+      p(a(href = "https://data.seattle.gov/Public-Safety/Crisis-Data/i2q9-thny", "Crisis Contacts Data"))
       ),
 
     # Sandy
     # show the Seattle area with regard to number of crisis call
     tabPanel(
       "Numbers of Calls verses Sector in Seattle",
-      titlePanel("Geographical Relations to Crisis Calls"),
+      h2("Geographical Relations to Crisis Calls", align = "center"),
       p("This map shows the distributions of crisis calls in Seattle Police
         Department Precincts. Each circle in the map represents a crisis call
         in the area. The size of the circle is related to the number
@@ -84,7 +85,7 @@ shinyUI(navbarPage(
     # Can change to focus on specific crimes by precinct
     tabPanel(
       "Crisis Calls and Crime Dispositions by Precinct",
-      h1("Number of Crisis Calls and Crime Dispositions in Relation to Precinct", align = "center");
+      h1("Number of Crisis Calls and Crime Dispositions in Relation to Precinct", align = "center"),
 
       p(
         paste(
