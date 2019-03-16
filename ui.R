@@ -15,7 +15,7 @@ library(tidyverse)
 source("analysis.R")
 source("data/crime_graph.R")
 
-#
+#Rayna
 shinyUI(navbarPage(
   title = "Seattle Crisis Call Analysis",
   tabsetPanel(
@@ -42,22 +42,23 @@ shinyUI(navbarPage(
            highest amount of crime?")),
       h5(p("4: How many emergent calls occur during each month a year? What about evening/afternoon versus morning? Is there a
            correlation to time of day?")),
-      h4(p("Here our data links:")),
-      a(href = "https://l.facebook.com/l.php?u=https%3A%2F%2Fdata.seattle.gov%2FPublic-Safety%2FCrisis-Data%2Fi2q9-thny%3Ffbclid%3DIwAR1_OsjbuBBFHX1mfieFLsS9ZZ5dni8JdSPiCGwCi8pJwDE1eUDZdf9rfqQ&h=AT1whrLU8k3Lmdtb6xmLl11d7rLNuXzkA47jxm5G8putw-ehBd6vqmwx5hmQZ9yZVEBA2P0xqv28FBkC-0NDWZEf3uno3yt_3dN7li0NBeyrR9U3igKUUBbQHw1zMISA0NLe1hbNraFygq_Qmfyr", "Data Base 1 - Police Department"),
-      a(href = "https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.seattle.gov%2Fpolice%2Finformation-and-data%2Fcrisis-contacts%3Ffbclid%3DIwAR1wIdWfjSotCyJvQ47VC4vKz9r_wMqPRd7PublqujrlyAn4bsKkvpQ1flM&h=AT1whrLU8k3Lmdtb6xmLl11d7rLNuXzkA47jxm5G8putw-ehBd6vqmwx5hmQZ9yZVEBA2P0xqv28FBkC-0NDWZEf3uno3yt_3dN7li0NBeyrR9U3igKUUBbQHw1zMISA0NLe1hbNraFygq_Qmfyr", "Data Base 2 - Police Department")
+      h4(p("Here our data links, the first of which is crisis data and the second which is crisis contacts data both
+           obtained from the Seattle.gov data source:")),
+      a(href = "https://data.seattle.gov/Public-Safety/Crisis-Data/i2q9-thny", "Crisis Data"),
+      a(href = "https://data.seattle.gov/Public-Safety/Crisis-Data/i2q9-thny", "Crisis Contacts Data")
       ),
 
     # Sandy
     # show the Seattle area with regard to number of crisis call
     tabPanel(
       "Numbers of Calls verses Sector in Seattle",
-      titlePanel("Seattle Map in relation with crisis call"),
-      p("These map show the distributions of crisis calls in Seattle Police
-        Department Precincts. Each circle in the map represent the sectors
+      titlePanel("Geographical Relations to Crisis Calls"),
+      p("This map shows the distributions of crisis calls in Seattle Police
+        Department Precincts. Each circle in the map represents a crisis call
         in the area. The size of the circle is related to the number
-        of crisis call. User can pick the year they interested in and
-        compare it with other years graph. Below we can see the increase number
-        of crisis call in almost sector in 2015-2018."),
+        of crisis calls for that Presinct. Users can pick the year they're interested in and
+        compare it with other years of crisis call data in Seattle. Below we can see the
+        the number of crisis calls in certain sectors for the years 2015-2018."),
       sidebarLayout(
         sidebarPanel(
           selectInput(
@@ -83,6 +84,7 @@ shinyUI(navbarPage(
     # Can change to focus on specific crimes by precinct
     tabPanel(
       "Crisis Calls and Crime Dispositions by Precinct",
+      h1("Number of Crisis Calls and Crime Dispositions in Relation to Precinct", align = "center");
 
       p(
         paste(
@@ -148,8 +150,9 @@ shinyUI(navbarPage(
       h5("This interactive graph displays the most common crimes in Seattle.
           You can select a year from 2008 and up and it will display a graph
           showing different crimes that have been committed in the selected year.
-          This will allow the user to see what the most/least common crime was."),
-      p("Note: this data was collected from a different source."),
+          This will allow the user to see what the most/least common crime was for 
+          a certain year in the Seattle region."),
+      p("Note: this data was collected from a different source than the previous pages."),
       sidebarLayout(
         sidebarPanel(
           selectInput("select", "Select Year:",
