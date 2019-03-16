@@ -22,7 +22,7 @@ shinyUI(navbarPage(
     tabPanel(
       "Overview",
       h1("Seattle Crime Analysis - What Kinds of Crime Happen in Your Area?", align = "center"),
-      h2("Authors: Imani Apostol, Nikhil Raman, Rayna Tilley, Sandy Yang"),
+      h4("Authors: Imani Apostol, Nikhil Raman, Rayna Tilley, Sandy Yang"),
 
       h5(p("In this report we will be analyzing police crisis response data in
            the Seattle area collected by the
